@@ -1,6 +1,5 @@
 package com.client.LazardoClient.Model;
 
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +12,7 @@ import lombok.ToString;
 @Data
 public class ClientPurchase {
 	
+	private Integer clientPurchaseId;
 	private Integer purchaseclientid;
 	private Integer purchaseproductid;
 	private Product productList;

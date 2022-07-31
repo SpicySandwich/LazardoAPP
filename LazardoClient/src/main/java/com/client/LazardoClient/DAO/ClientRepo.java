@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface ClientRepo {
 	
-
+	
 	@Select("SELECT   "
 			+ "client_login_id as loginId,"
 			+ "client_username as username, "
@@ -34,64 +34,68 @@ public interface ClientRepo {
 	})
 	public List<ClientLogin> clientList();
 	
-	
-	@Select("SELECT "
+			@Select("SELECT "
 			+ "client_login_id as loginId, "
 			+ "client_username as username, "
 			+ "client_password as password "
 			+ "FROM tbclientlogin "
 			+ "WHERE client_login_id = #{loginId}")
-	@Results(value = {
+		@Results(value = {
 			@Result(property = "loginId", column = "loginId"),
 			@Result(property = "username", column = "username"),
 			@Result(property = "password", column = "password"),
 			@Result(property = "clientDetails", column = "loginId",javaType = ClientDetails.class, one = @One(select = "selectClientDetail"))		
 			
-	})
-	public ClientLogin findClient(Integer loginId);
-	
-	@Select("SELECT "
+		})
+		public ClientLogin findClient(Integer loginId);
+		
+		@Select("SELECT "
 			+ "client_id as detailId, "
 			+ "client_firstname as firstname, "
 			+ "client_lastname as lastname, "
 			+ "client_email as email "
 			+ "FROM tbclientdetails "
-			+ "WHERE client_id = #{clientDetailID}")
-	
-	@Results(value = {
-	@Result(property = "detailId", column = "detailId"),
-	@Result(property = "firstname", column = "firstname"),
-	@Result(property = "lastname", column = "lastname"),
-	@Result(property = "email", column = "email"),
-	@Result(property = "clientPurchases", column = "detailId", javaType = List.class, many = @Many(select = "selectPurchaseDetail"))
-})
+			+ "WHERE client_id = #{loginId}")
+		
+		@Results(value = {
+		@Result(property = "detailId", column = "detailId"),
+		@Result(property = "firstname", column = "firstname"),
+		@Result(property = "lastname", column = "lastname"),
+		@Result(property = "email", column = "email"),
+		@Result(property = "clientPurchases", column = "detailId", javaType = List.class, many = @Many(select = "selectPurchaseDetail"))
+		})
 		ClientDetails selectClientDetail();
+		
+		@Select("SELECT "
+		+ "purchase_id as clientPurchaseId, "
+		+ "client_purchase_id as purchaseclientid, "
+		+ "client_product_purchase_id as purchaseproductid "
+		+ "FROM tbpurchasedetails "
+		+ "WHERE client_purchase_id = #{detailId}"
+		)
+		@Results(value = {
+		@Result(property = "clientPurchaseId", column = "clientPurchaseId"),
+		@Result(property = "purchaseclientid", column = "purchaseclientid"),
+		@Result(property = "purchaseproductid", column = "purchaseproductid"),
+		@Result(property = "productList", column = "purchaseproductid",javaType = Product.class, one = @One(select = "selectProductListCLient"))
+		})
+		List<ClientPurchase>  selectPurchaseDetail();
+		
+		
+		@Select("SELECT "
+		+ "product_id as id, "
+		+ "product_brand as brand, "
+		+ "product_name as name, "
+		+ "product_price as price, "
+		+ "product_current_date as currentdate, "
+		+ "product_expiration_date as expirationdate, "
+		+ "product_comment as comment "
+		+ "FROM tblazardoproduct "
+		+ "WHERE product_id = #{purchaseproductid}")
+		Product selectProductListCLient();
+
+
+
 	
-	
-	@Select("SELECT "
-			+ "client_purchase_id as purchaseclientid, "
-			+ "client_product_purchase_id as purchaseproductid "
-			+ "FROM tbpurchasedetails "
-			+ "WHERE client_purchase_id = #{detailId}"
-			)
-	@Results(value = {
-			@Result(property = "purchaseclientid", column = "purchaseclientid"),
-			@Result(property = "purchaseproductid", column = "purchaseproductid"),
-			@Result(property = "productList", column = "purchaseproductid",javaType = Product.class, one = @One(select = "selectProductListCLient"))
-	})
-	List<ClientPurchase>  selectPurchaseDetail();
-	
-	
-	@Select("SELECT "
-			+ "product_id as id, "
-			+ "product_brand as brand, "
-			+ "product_name as name, "
-			+ "product_price as price, "
-			+ "product_current_date as currentdate, "
-			+ "product_expiration_date as expirationdate, "
-			+ "product_comment as comment "
-			+ "FROM tblazardoproduct "
-			+ "WHERE product_id = #{purchaseproductid}")
-	Product selectProductListCLient();
 
 }

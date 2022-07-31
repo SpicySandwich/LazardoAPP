@@ -3,7 +3,6 @@ package com.client.LazardoClient.Deserializer;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.core.JacksonException;
@@ -24,7 +23,7 @@ public class LocalDateTimeDeserializer  extends StdDeserializer<LocalDateTime>{
 	public LocalDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
 
         DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		ZoneId defaultZoneId = ZoneId.systemDefault();
+
 		
 		LocalDate localDate = LocalDate.parse(p.getValueAsString(), localDateFormatter);
 		

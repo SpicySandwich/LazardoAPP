@@ -1,12 +1,8 @@
 package com.client.LazardoClient.Controller;
 
-import java.util.List;
-import java.util.Optional;
 
-import com.client.LazardoClient.DAO.ClientRepo;
-import com.client.LazardoClient.Model.ClientDetails;
+import java.util.List;
 import com.client.LazardoClient.Model.ClientLogin;
-import com.client.LazardoClient.Model.Product;
 import com.client.LazardoClient.Service.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
