@@ -21,7 +21,19 @@ public class ClientController {
 	
 	@Autowired
 	private ClientService clientService;
-
+	
+//	@GetMapping("/{id}")
+//	public List<Product> clientProductList(@PathVariable Integer id){
+//		
+//		Optional<ClientLogin> clientlogin = Optional.of(clientRepo.findClient(id));
+//		
+//		if (clientlogin.isPresent()) {
+//			
+//			return clientlogin.get().getClientDetails().getClientPurchases().getProductList();
+//		}
+//		return null;
+//	}
+	
 	@GetMapping("/{id}")
 	public ClientLogin clientProductList(@PathVariable Integer id){
 		

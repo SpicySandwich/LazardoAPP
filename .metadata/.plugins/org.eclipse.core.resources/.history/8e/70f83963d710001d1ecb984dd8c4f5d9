@@ -18,6 +18,9 @@ import org.apache.ibatis.annotations.Select;
 public interface ClientRepo {
 	
 
+
+
+
 	@Select("SELECT   "
 			+ "client_login_id as loginId,"
 			+ "client_username as username, "
