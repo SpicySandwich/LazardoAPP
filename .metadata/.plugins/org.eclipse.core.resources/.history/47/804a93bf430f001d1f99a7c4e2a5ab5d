@@ -1,0 +1,23 @@
+package com.client.LazardoClient.Model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class ClientPurchase {
+	
+	private Integer purchaseclientid;
+	private Integer purchaseproductid;
+
+}
+
+
+//CREATE TABLE tbpurchasedetails(
+//`client_purchase_id` INTEGER UNSIGNED NULL,
+//`client_product_purchase_id` INTEGER UNSIGNED NULL,
+//CONSTRAINT `fk_client_id` FOREIGN KEY (`client_purchase_id`) REFERENCES `tbclientdetails`(`client_id`),
+//CONSTRAINT `fk_product_id` FOREIGN KEY (`client_product_purchase_id`) REFERENCES `tblazardoproduct`(`product_id`)
+//)ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -1,0 +1,16 @@
+package com.product.LazardoProduct.ConvertModelToDTO;
+
+import com.product.LazardoProduct.DTO.ProductDTO;
+import com.product.LazardoProduct.Model.Product;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ModelToDTObuilder {
+	
+	@Autowired
+	private Product product;
+	
+	@Autowired
+	private ProductDTO productDTO;
+
+}

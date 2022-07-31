@@ -1,0 +1,11 @@
+package com.product.LazardoProduct.DTO;
+
+public class ProductDTO {
+	
+	private Integer id;
+	private String brand;
+	private String name;
+	private Double price;
+	private String comment;
+
+}

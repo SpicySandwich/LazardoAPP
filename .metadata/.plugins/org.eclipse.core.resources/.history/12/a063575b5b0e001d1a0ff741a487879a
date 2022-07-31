@@ -1,0 +1,5 @@
+package com.product.LazardoProduct.Model;
+
+public class Product {
+
+}

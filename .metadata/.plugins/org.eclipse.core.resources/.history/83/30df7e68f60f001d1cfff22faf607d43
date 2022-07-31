@@ -1,0 +1,13 @@
+package com.client.LazardoClient;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LazardoClientApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LazardoClientApplication.class, args);
+	}
+
+}

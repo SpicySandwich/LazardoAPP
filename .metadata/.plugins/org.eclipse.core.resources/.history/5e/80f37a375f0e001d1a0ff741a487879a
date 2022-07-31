@@ -1,0 +1,22 @@
+package com.product.LazardoProduct.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
+public class ProductDTO {
+	
+	private Integer id;
+	private String brand;
+	private String name;
+	private Double price;
+	private String comment;
+
+}

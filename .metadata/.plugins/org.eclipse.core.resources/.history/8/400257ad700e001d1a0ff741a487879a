@@ -1,0 +1,23 @@
+package com.product.LazardoProduct.ConvertModelToDTO;
+
+import com.product.LazardoProduct.DTO.ProductDTO;
+import com.product.LazardoProduct.Model.Product;
+
+
+public class ModelToDTObuilder {
+	
+	public ProductDTO saveproductDTO(Product product) {
+		
+	ProductDTO productDTO =	ProductDTO.builder()
+		.id(product.getId())
+		.brand(product.getBrand())
+		.name(product.getName())
+		.price(product.getPrice())
+		.currentdate(product.getCurrentdate())
+		.expirationdate(product.getExpirationdate())
+		.build();
+	
+	return productDTO;
+	}
+
+}

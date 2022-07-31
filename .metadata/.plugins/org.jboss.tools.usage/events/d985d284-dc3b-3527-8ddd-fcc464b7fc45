@@ -1,0 +1,11 @@
+#Sun Jul 31 18:59:35 SGT 2022
+ct=jbt
+a=finishWizard
+c=0
+s=0
+d=1659265175308
+v=2.2.400
+vl=How many times the 'Finish' button pressed during the day
+cmp=usage
+cl=org.eclipse.buildship.ui.internal.wizard.project.ProjectImportWizard
+l=Wizard class name
