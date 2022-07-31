@@ -1,0 +1,12 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.ClientLogin;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public class PostClientRepo {
+	
+	public int signInClient(ClientLogin clientLogin);
+
+}

@@ -8,6 +8,8 @@ import com.client.LazardoClient.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +31,11 @@ public class ClientController {
 	public List<ClientLogin> clientListData(){
 		
 		return clientService.listClient();
+	}
+	
+	@PostMapping("/add")
+	public ClientLogin signUpClients(@RequestBody ClientLogin clientLogin) {
+		return clientService.signUpClient(clientLogin);
 	}
 	
 

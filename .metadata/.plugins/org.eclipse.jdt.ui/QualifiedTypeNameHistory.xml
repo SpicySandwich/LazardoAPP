@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="lombok.Builder"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Delete"/>
-    <fullyQualifiedTypeName name="com.product.LazardoProduct.DTO.ProductDTO.ProductDTOBuilder"/>
     <fullyQualifiedTypeName name="com.product.LazardoProduct.Service.ProductServiceInt"/>
     <fullyQualifiedTypeName name="com.product.LazardoProduct.DAO.ProductRepo"/>
     <fullyQualifiedTypeName name="com.product.LazardoProduct.ConvertModelToDTO.ModelToDTObuilder"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Update"/>
     <fullyQualifiedTypeName name="com.product.LazardoProduct.Service.ProductService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.mybatis.spring.annotation.MapperScan"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.type.MappedTypes"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.deser.std.StdDeserializer"/>
@@ -23,19 +17,16 @@
     <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
     <fullyQualifiedTypeName name="java.time.ZoneId"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Options"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="com.product.LazardoProduct.DTO.ProductDTO"/>
     <fullyQualifiedTypeName name="com.product.LazardoProduct.Model.Product"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Deserializer.LocalDateTimeDeserializer"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.One"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Results"/>
@@ -51,13 +42,22 @@
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityInfo"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.ObjectIdGenerators"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.ClientRepo"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Service.ClientService"/>
     <fullyQualifiedTypeName name="java.lang.LinkageError"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientLogin"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Product"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty.Access"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.PostClientRepo"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.EnableLoadTimeWeaving"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientLogin"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Options"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
 </qualifiedTypeNameHistroy>

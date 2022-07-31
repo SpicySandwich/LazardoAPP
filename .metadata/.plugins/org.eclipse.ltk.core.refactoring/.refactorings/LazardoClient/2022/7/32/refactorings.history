@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.client.LazardoClient.DAO.ClientRepo&apos; to &apos;GetClientDataRepo&apos;&#x0D;&#x0A;- Original project: &apos;LazardoClient&apos;&#x0D;&#x0A;- Original element: &apos;com.client.LazardoClient.DAO.ClientRepo&apos;&#x0D;&#x0A;- Renamed element: &apos;com.client.LazardoClient.DAO.GetClientDataRepo&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ClientRepo&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.client.LazardoClient.DAO{ClientRepo.java[ClientRepo" matchStrategy="1" name="GetClientDataRepo" qualified="false" references="true" similarDeclarations="false" stamp="1659279406536" textual="false" version="1.0"/>
+</session>

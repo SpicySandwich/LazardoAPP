@@ -1,0 +1,15 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.ClientLogin;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface PostClientRepo {
+	
+	@Insert("INSERT INTO tbclientlogin (client_login_id, client_username, client_password ) "
+			      + "VALUES ( #{tbclientlogin.loginId}, #{tbclientlogin.username}, #{tbclientlogin.password} )")
+	public int signInClient(ClientLogin clientLogin);
+
+}
