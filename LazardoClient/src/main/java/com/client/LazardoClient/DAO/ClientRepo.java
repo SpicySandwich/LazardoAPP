@@ -93,9 +93,6 @@ public interface ClientRepo {
 		+ "FROM tblazardoproduct "
 		+ "WHERE product_id = #{purchaseproductid}")
 		Product selectProductListCLient();
-
-
-
 	
 
 }
