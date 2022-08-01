@@ -1,1 +1,4 @@
 1659333293014	Rename type 'GetClientDataRepo'
+1659361038006	Rename type 'PostClientRepo'
+1659362755156	Rename type 'SigninClientRepo'
+1659362766851	Rename type 'LoginClientDataRepo'

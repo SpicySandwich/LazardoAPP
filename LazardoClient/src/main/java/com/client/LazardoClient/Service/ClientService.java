@@ -1,8 +1,8 @@
 package com.client.LazardoClient.Service;
 
 
-import com.client.LazardoClient.DAO.LoginClientDataRepo;
-import com.client.LazardoClient.DAO.PostClientRepo;
+import com.client.LazardoClient.DAO.SignInClientDataRepo;
+import com.client.LazardoClient.DAO.SignUpClientRepo;
 import com.client.LazardoClient.Model.ClientLogin;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class ClientService {
 	
 	@Autowired
-	private LoginClientDataRepo clientRepo;
+	private SignInClientDataRepo clientRepo;
 	
 	@Autowired
-	private PostClientRepo postClientRepo;
+	private SignUpClientRepo postClientRepo;
 	
 	public ClientLogin findClient(String username, String password) {
 		

@@ -29,7 +29,7 @@ public class ClientController {
 
      }
 	
-	@PostMapping("/add")
+	@PostMapping("/signup")
 	public ClientLogin signUpClients(@RequestBody ClientLogin clientLogin) {
 		return clientService.signUpClient(clientLogin);
 	}
