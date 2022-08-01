@@ -25,7 +25,6 @@ public class ClientLogin {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String reTypePassword;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
 	private ClientDetails clientDetails;
 
 }

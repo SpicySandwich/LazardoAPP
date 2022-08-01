@@ -2,7 +2,7 @@ package com.client.LazardoClient.Service;
 
 import java.util.List;
 
-import com.client.LazardoClient.DAO.GetClientDataRepo;
+import com.client.LazardoClient.DAO.LoginClientDataRepo;
 import com.client.LazardoClient.DAO.PostClientRepo;
 import com.client.LazardoClient.Model.ClientLogin;
 
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 public class ClientService {
 	
 	@Autowired
-	private GetClientDataRepo clientRepo;
+	private LoginClientDataRepo clientRepo;
 	
 	@Autowired
 	private PostClientRepo postClientRepo;
 	
-	public ClientLogin findClient(Integer id) {
+	public ClientLogin findClient(String username, String password) {
 		
-		return clientRepo.findClient(id);
+		return clientRepo.findClient(username,password);
 	}
 	
 	public List<ClientLogin> listClient(){

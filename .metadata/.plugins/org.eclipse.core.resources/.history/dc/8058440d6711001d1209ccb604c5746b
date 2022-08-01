@@ -1,0 +1,41 @@
+package com.client.LazardoClient.Service;
+
+import java.util.List;
+
+import com.client.LazardoClient.DAO.LoginClientDataRepo;
+import com.client.LazardoClient.DAO.PostClientRepo;
+import com.client.LazardoClient.Model.ClientLogin;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClientService {
+	
+	@Autowired
+	private LoginClientDataRepo clientRepo;
+	
+	@Autowired
+	private PostClientRepo postClientRepo;
+	
+
+	
+	public ClientLogin signinClient(String username) {
+//		ClientLogin clientLogin = new ClientLogin();
+//	username = clientLogin.getUsername(); 
+//	password = clientLogin.getPassword();
+//	
+		return clientRepo.findClient(username);
+	}
+	
+	public List<ClientLogin> listClient(){
+		
+		return clientRepo.clientList();
+	}
+	
+	public ClientLogin signUpClient(ClientLogin clientLogin) {
+		postClientRepo.signInClient(clientLogin);
+		return clientLogin;
+	}
+
+}
