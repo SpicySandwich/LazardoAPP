@@ -1,0 +1,5 @@
+package com.client.LazardoClient.ConvertEntityToDTO;
+
+public class TransferBodyParameter {
+
+}

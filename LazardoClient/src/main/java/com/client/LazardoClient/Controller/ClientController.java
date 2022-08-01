@@ -1,7 +1,7 @@
 package com.client.LazardoClient.Controller;
 
 
-import java.util.List;
+
 import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Service.ClientService;
 
@@ -28,12 +28,6 @@ public class ClientController {
 		return clientService.findClient(username,password);
 
      }
-	
-	@GetMapping
-	public List<ClientLogin> clientListData(){
-		
-		return clientService.listClient();
-	}
 	
 	@PostMapping("/add")
 	public ClientLogin signUpClients(@RequestBody ClientLogin clientLogin) {

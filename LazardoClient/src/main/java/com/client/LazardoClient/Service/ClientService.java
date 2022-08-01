@@ -1,6 +1,5 @@
 package com.client.LazardoClient.Service;
 
-import java.util.List;
 
 import com.client.LazardoClient.DAO.LoginClientDataRepo;
 import com.client.LazardoClient.DAO.PostClientRepo;
@@ -23,11 +22,7 @@ public class ClientService {
 		return clientRepo.findClient(username,password);
 	}
 	
-	public List<ClientLogin> listClient(){
-		
-		return clientRepo.clientList();
-	}
-	
+
 	public ClientLogin signUpClient(ClientLogin clientLogin) {
 		postClientRepo.signInClient(clientLogin);
 		return clientLogin;

@@ -1,0 +1,5 @@
+package com.client.LazardoClient.DTO;
+
+public class ConsumerPurchaseDTO {
+
+}

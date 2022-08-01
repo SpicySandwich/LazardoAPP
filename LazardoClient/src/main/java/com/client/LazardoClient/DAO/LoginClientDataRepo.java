@@ -5,6 +5,7 @@ import java.util.List;
 import com.client.LazardoClient.Model.ClientDetails;
 import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Model.ClientPurchase;
+import com.client.LazardoClient.Model.Price;
 import com.client.LazardoClient.Model.Product;
 
 import org.apache.ibatis.annotations.Many;
@@ -17,25 +18,6 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface LoginClientDataRepo {
-	
-	
-	@Select("SELECT   "
-			+ "client_login_id as loginId,"
-			+ "client_username as username, "
-			+ "client_password as password, "
-			+ "client_detail as clientDetailID "
-			+ "FROM tbclientlogin ")
-	@Results(value = {
-			@Result(property = "loginId", column = "loginId"),
-			@Result(property = "username", column = "username"),
-			@Result(property = "password", column = "password"),
-			@Result(property = "clientDetailID", column = "client_detail"),
-			@Result(property = "clientDetails", column = "clientDetailID",javaType = ClientDetails.class, one = @One(select = "selectClientDetail"))		
-			
-	})
-	public List<ClientLogin> clientList();
-	
-	
 	
 			@Select("SELECT "
 			+ "client_login_id as loginId, "
@@ -56,7 +38,8 @@ public interface LoginClientDataRepo {
 			+ "client_id as detailId, "
 			+ "client_firstname as firstname, "
 			+ "client_lastname as lastname, "
-			+ "client_email as email "
+			+ "client_email as email, "
+			+ "money_balance as balance "
 			+ "FROM tbclientdetails "
 			+ "WHERE client_id = #{loginId}")
 		
@@ -65,7 +48,9 @@ public interface LoginClientDataRepo {
 		@Result(property = "firstname", column = "firstname"),
 		@Result(property = "lastname", column = "lastname"),
 		@Result(property = "email", column = "email"),
-		@Result(property = "clientPurchases", column = "detailId", javaType = List.class, many = @Many(select = "selectPurchaseDetail"))
+		@Result(property = "balance", column = "balance"),
+		@Result(property = "clientPurchases", column = "detailId", javaType = List.class, many = @Many(select = "selectPurchaseDetail")),
+		@Result(property = "productTotalPrice", column = "detailId",javaType = Price.class, one = @One(select = "selectTotalPrice"))
 		})
 		ClientDetails selectClientDetail();
 		
@@ -96,4 +81,12 @@ public interface LoginClientDataRepo {
 		+ "FROM tblazardoproduct "
 		+ "WHERE product_id = #{purchaseproductid}")
 		Product selectProductListCLient();
+		
+		@Select ("SELECT SUM(product_price) AS totalPrice "
+				+ "FROM tbpurchasedetails pd "
+				+ "LEFT JOIN tblazardoproduct lp "
+				+ "ON pd.client_purchase_id = lp.product_id "
+				+ "WHERE pd.client_purchase_id = #{detailId}"
+				)
+		Price selectTotalPrice();
 }

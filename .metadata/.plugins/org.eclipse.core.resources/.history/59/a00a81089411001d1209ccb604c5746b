@@ -1,0 +1,11 @@
+package com.client.LazardoClient.ModelException;
+
+public class NotNullException {
+	
+private static final long serialVersionUID = 1L;
+	
+	public NotNullException (String message) {
+		super(message);
+	}
+
+}

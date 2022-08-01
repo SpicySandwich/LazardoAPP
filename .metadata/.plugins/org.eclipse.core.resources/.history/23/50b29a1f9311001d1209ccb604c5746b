@@ -1,0 +1,5 @@
+package com.client.LazardoClient.GlobalException;
+
+public class GlobalException {
+
+}
