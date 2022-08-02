@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ClientLogin {
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
+	//@JsonProperty(access = Access.WRITE_ONLY)
 	private Integer loginId;
 	
 	private String username;

@@ -19,30 +19,36 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface SignInClientDataRepo {
 	
-			@Select("SELECT "
-			+ "client_login_id as loginId, "
-			+ "client_username as username, "
-			+ "client_password as password "
-			+ "FROM tbclientlogin "
-			+ "WHERE client_username = #{username} AND client_password = #{password} ")
-		@Results(value = {
+	String SELECT_LOGIN = "SELECT client_login_id as loginId, client_username as username, client_password as password "
+		                                	+ "FROM tbclientlogin WHERE client_username = #{username} AND client_password = #{password} ";
+	
+	String SELECT_CLIENT_DETAILS = "SELECT client_id as detailId, client_firstname as firstname, client_lastname as lastname, client_email as email, money_balance as balance "
+                                            + "FROM tbclientdetails WHERE client_id = #{loginId}";
+	
+	String SELECT_CLIENT_PURCHASE = "SELECT purchase_id as clientPurchaseId, client_purchase_id as purchaseclientid, client_product_purchase_id as purchaseproductid "
+                                            + "FROM tbpurchasedetails WHERE client_purchase_id = #{detailId}";
+	
+	String SELECT_CLIENT_PRODUCT = "SELECT product_id as id, product_brand as brand, product_name as name, product_price as price, product_current_date as currentdate, "
+											+ "product_expiration_date as expirationdate, product_comment as comment "
+											+ "FROM tblazardoproduct "
+											+ "WHERE product_id = #{purchaseproductid}";
+	
+	String SELECT_TOTAL_PRODUCT_PRICE = "SELECT SUM(product_price) AS totalPrice "
+											+ "FROM tbpurchasedetails pd "
+											+ "LEFT JOIN tblazardoproduct lp "
+											+ "ON pd.client_purchase_id = lp.product_id "
+											+ "WHERE pd.client_purchase_id = #{detailId}";
+	
+			@Select(SELECT_LOGIN)
+		    @Results(value = {
 			@Result(property = "loginId", column = "loginId"),
 			@Result(property = "username", column = "username"),
 			@Result(property = "password", column = "password"),
 			@Result(property = "clientDetails", column = "loginId",javaType = ClientDetails.class, one = @One(select = "selectClientDetail"))		
-			
 		})
-		public ClientLogin findClient(@Param("username") String username, @Param("password")String password);
+		public ClientLogin singInClient(@Param("username") String username, @Param("password")String password);
 		
-		@Select("SELECT "
-			+ "client_id as detailId, "
-			+ "client_firstname as firstname, "
-			+ "client_lastname as lastname, "
-			+ "client_email as email, "
-			+ "money_balance as balance "
-			+ "FROM tbclientdetails "
-			+ "WHERE client_id = #{loginId}")
-		
+		@Select(SELECT_CLIENT_DETAILS)
 		@Results(value = {
 		@Result(property = "detailId", column = "detailId"),
 		@Result(property = "firstname", column = "firstname"),
@@ -54,13 +60,7 @@ public interface SignInClientDataRepo {
 		})
 		ClientDetails selectClientDetail();
 		
-		@Select("SELECT "
-		+ "purchase_id as clientPurchaseId, "
-		+ "client_purchase_id as purchaseclientid, "
-		+ "client_product_purchase_id as purchaseproductid "
-		+ "FROM tbpurchasedetails "
-		+ "WHERE client_purchase_id = #{detailId}"
-		)
+		@Select(SELECT_CLIENT_PURCHASE)
 		@Results(value = {
 		@Result(property = "clientPurchaseId", column = "clientPurchaseId"),
 		@Result(property = "purchaseclientid", column = "purchaseclientid"),
@@ -70,23 +70,9 @@ public interface SignInClientDataRepo {
 		List<ClientPurchase>  selectPurchaseDetail();
 		
 		
-		@Select("SELECT "
-		+ "product_id as id, "
-		+ "product_brand as brand, "
-		+ "product_name as name, "
-		+ "product_price as price, "
-		+ "product_current_date as currentdate, "
-		+ "product_expiration_date as expirationdate, "
-		+ "product_comment as comment "
-		+ "FROM tblazardoproduct "
-		+ "WHERE product_id = #{purchaseproductid}")
+		@Select(SELECT_CLIENT_PRODUCT)
 		Product selectProductListCLient();
 		
-		@Select ("SELECT SUM(product_price) AS totalPrice "
-				+ "FROM tbpurchasedetails pd "
-				+ "LEFT JOIN tblazardoproduct lp "
-				+ "ON pd.client_purchase_id = lp.product_id "
-				+ "WHERE pd.client_purchase_id = #{detailId}"
-				)
+		@Select (SELECT_TOTAL_PRODUCT_PRICE )
 		Price selectTotalPrice();
 }

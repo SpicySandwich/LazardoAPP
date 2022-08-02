@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.product.LazardoProduct.Model.Product"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.One"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Results"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Result"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Many"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientPurchase"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientDetails"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityInfo"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.ObjectIdGenerators"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.ClientRepo"/>
@@ -20,12 +14,9 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty.Access"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.PostClientRepo"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.EnableLoadTimeWeaving"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Options"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
@@ -56,8 +47,17 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.InvalidException"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.InternalException"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Price"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Price"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Results"/>
+    <fullyQualifiedTypeName name="java.lang.Package"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Result"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.One"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientDetails"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Options"/>
 </qualifiedTypeNameHistroy>
