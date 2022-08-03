@@ -25,12 +25,16 @@ public class ClientService {
 	
 
 	public ClientLogin signUpClient(ClientLogin clientLogin) {
+		
+		 clientLogin.getClientDetails().setLoginUsername(clientLogin.getUsername());
 	
-		if(signUpClientRepo.signInClient(clientLogin) == true) {
+		if(signUpClientRepo.signUpClient(clientLogin) == true) {
 			signUpClientRepo.insertClientDetails(clientLogin.getClientDetails());
 			return clientLogin;
 		}
 		return null;
 	}
+	
+
 
 }

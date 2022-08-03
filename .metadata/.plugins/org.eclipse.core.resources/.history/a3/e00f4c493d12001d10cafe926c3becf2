@@ -1,0 +1,34 @@
+package com.client.LazardoClient.Model;
+
+
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class ClientDetails {
+	
+	private Integer detailId;
+	private String firstname;
+	private String lastname;
+	private String email;
+	private Double balance;
+	private List<ClientPurchase>  clientPurchases;
+	private Price productTotalPrice;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private String loginUsername;
+
+}

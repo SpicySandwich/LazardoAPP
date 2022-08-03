@@ -1,0 +1,46 @@
+package com.client.LazardoClient.Service;
+
+
+import com.client.LazardoClient.DAO.SignInClientDataRepo;
+import com.client.LazardoClient.DAO.SignUpClientRepo;
+import com.client.LazardoClient.Model.ClientDetails;
+import com.client.LazardoClient.Model.ClientDetails.ClientDetailsBuilder;
+import com.client.LazardoClient.Model.ClientLogin;
+import com.client.LazardoClient.ModelException.InternalException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClientService {
+	
+	@Autowired
+	private SignInClientDataRepo signInRepo;
+	
+	@Autowired
+	private SignUpClientRepo signUpClientRepo;
+	
+	public ClientLogin siginInClients(String username, String password) {
+		
+		return signInRepo.singInClient(username,password);
+	}
+	
+	
+
+	public ClientLogin signUpClient(ClientLogin clientLogin) {
+		
+		
+try {
+	if(signUpClientRepo.signInClient(clientLogin) == true) {
+		signUpClientRepo.insertClientDetails(clientLogin.getClientDetails().buildertest(clientLogin));
+
+		return clientLogin;
+	}
+} catch (Exception e) {
+  throw new InternalException(e.toString());
+}
+		
+	
+	}
+
+}

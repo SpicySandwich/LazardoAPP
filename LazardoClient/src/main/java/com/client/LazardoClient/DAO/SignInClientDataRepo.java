@@ -33,11 +33,15 @@ public interface SignInClientDataRepo {
 											+ "FROM tblazardoproduct "
 											+ "WHERE product_id = #{purchaseproductid}";
 	
-	String SELECT_TOTAL_PRODUCT_PRICE = "SELECT SUM(product_price) AS totalPrice "
-											+ "FROM tbpurchasedetails pd "
+	String SELECT_TOTAL_PRODUCT_PRICE = "SELECT SUM(lp.product_price)  as totalPrice "
+											+ "FROM tbclientlogin cl "
+											+ "LEFT JOIN tbclientdetails cd "
+											+ "ON cd.client_id = cl.client_login_id "
+											+ "LEFT JOIN tbpurchasedetails pd "
+											+ "ON pd.client_purchase_id =cd.client_id "
 											+ "LEFT JOIN tblazardoproduct lp "
-											+ "ON pd.client_purchase_id = lp.product_id "
-											+ "WHERE pd.client_purchase_id = #{detailId}";
+											+ "ON lp.product_id = pd.client_product_purchase_id "
+											+ "WHERE cd.client_email = #{email};";
 	
 			@Select(SELECT_LOGIN)
 		    @Results(value = {
@@ -56,7 +60,7 @@ public interface SignInClientDataRepo {
 		@Result(property = "email", column = "email"),
 		@Result(property = "balance", column = "balance"),
 		@Result(property = "clientPurchases", column = "detailId", javaType = List.class, many = @Many(select = "selectPurchaseDetail")),
-		@Result(property = "productTotalPrice", column = "detailId",javaType = Price.class, one = @One(select = "selectTotalPrice"))
+		@Result(property = "productTotalPrice", column = "email",javaType = Price.class, one = @One(select = "selectTotalPrice"))
 		})
 		ClientDetails selectClientDetail();
 		

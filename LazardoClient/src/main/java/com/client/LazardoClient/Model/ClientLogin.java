@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ClientLogin {
 	
-	//@JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Integer loginId;
 	
 	private String username;
@@ -26,6 +27,8 @@ public class ClientLogin {
 	private String reTypePassword;
 	
 	private ClientDetails clientDetails;
+	
+	
 
 }
 
