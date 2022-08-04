@@ -19,21 +19,21 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface SignInClientDataRepo {
 	
-	String SELECT_LOGIN = "SELECT client_login_id as loginId, client_username as username, client_password as password "
+	 final String SELECT_LOGIN = "SELECT client_login_id as loginId, client_username as username, client_password as password "
 		                                	+ "FROM tbclientlogin WHERE client_username = #{username} AND client_password = #{password} ";
 	
-	String SELECT_CLIENT_DETAILS = "SELECT client_id as detailId, client_firstname as firstname, client_lastname as lastname, client_email as email, money_balance as balance "
+	 final String SELECT_CLIENT_DETAILS = "SELECT client_id as detailId, client_firstname as firstname, client_lastname as lastname, client_email as email, money_balance as balance "
                                             + "FROM tbclientdetails WHERE client_id = #{loginId}";
 	
-	String SELECT_CLIENT_PURCHASE = "SELECT purchase_id as clientPurchaseId, client_purchase_id as purchaseclientid, client_product_purchase_id as purchaseproductid "
+	 final String SELECT_CLIENT_PURCHASE = "SELECT purchase_id as clientPurchaseId, client_purchase_id as purchaseclientid, client_product_purchase_id as purchaseproductid "
                                             + "FROM tbpurchasedetails WHERE client_purchase_id = #{detailId}";
 	
-	String SELECT_CLIENT_PRODUCT = "SELECT product_id as id, product_brand as brand, product_name as name, product_price as price, product_current_date as currentdate, "
+	 final String SELECT_CLIENT_PRODUCT = "SELECT product_id as id, product_brand as brand, product_name as name, product_price as price, product_current_date as currentdate, "
 											+ "product_expiration_date as expirationdate, product_comment as comment "
 											+ "FROM tblazardoproduct "
 											+ "WHERE product_id = #{purchaseproductid}";
 	
-	String SELECT_TOTAL_PRODUCT_PRICE = "SELECT SUM(lp.product_price)  as totalPrice "
+	 final String SELECT_TOTAL_PRODUCT_PRICE = "SELECT SUM(lp.product_price)  as totalPrice "
 											+ "FROM tbclientlogin cl "
 											+ "LEFT JOIN tbclientdetails cd "
 											+ "ON cd.client_id = cl.client_login_id "

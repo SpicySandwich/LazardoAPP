@@ -28,13 +28,15 @@ public class ClientDetails {
 	private String lastname;
 	private String email;
 	private Double balance;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private List<CartProduct>  cartProduct;
+	
 	private List<ClientPurchase>  clientPurchases;
 	private Price productTotalPrice;
 	
 	
 	
-	
-	
-	
+
 
 }

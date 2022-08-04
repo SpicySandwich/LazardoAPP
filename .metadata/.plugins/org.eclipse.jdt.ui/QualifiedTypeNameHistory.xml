@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityInfo"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.ObjectIdGenerators"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.ClientRepo"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Service.ClientService"/>
     <fullyQualifiedTypeName name="java.lang.LinkageError"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Product"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty.Access"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.PostClientRepo"/>
@@ -15,7 +10,6 @@
     <fullyQualifiedTypeName name="org.springframework.context.annotation.EnableLoadTimeWeaving"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
@@ -25,8 +19,6 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestControllerAdvice"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonFormat"/>
@@ -47,10 +39,8 @@
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Result"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.One"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Options"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="lombok.Builder"/>
     <fullyQualifiedTypeName name="java.lang.InternalError"/>
@@ -58,6 +48,16 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientLogin"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="lombok.AccessLevel"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientDetails"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.BuyProductRepo"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientDetails"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.CartProduct"/>
 </qualifiedTypeNameHistroy>

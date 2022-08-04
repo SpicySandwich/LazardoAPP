@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SignUpClientRepo {
 	
-	String INSERT_SIGNUP = "INSERT INTO tbclientlogin (client_login_id, client_username, client_password) "
+	final String INSERT_SIGNUP = "INSERT INTO tbclientlogin (client_login_id, client_username, client_password) "
 		                                    + "VALUES ( #{loginId},#{username}, #{password} )" ;
 	
-	String INSERT_CLIENT_DETAILS = "INSERT INTO tbclientdetails (client_id, client_firstname, client_lastname, client_email, money_balance) "
+	final String INSERT_CLIENT_DETAILS = "INSERT INTO tbclientdetails (client_id, client_firstname, client_lastname, client_email, money_balance) "
 		                                   + "VALUES ((SELECT client_login_id FROM tbclientlogin WHERE client_username = #{loginUsername}), "
 		                                   + "#{firstname}, #{lastname}, #{email}, #{balance})";
 	
@@ -21,6 +21,6 @@ public interface SignUpClientRepo {
 	public boolean signUpClient(ClientLogin clientLogin);
 	
 	@Insert(INSERT_CLIENT_DETAILS)
-	public Integer insertClientDetails(ClientDetails clientDetails);
+	public boolean  insertClientDetails(ClientDetails clientDetails);
 
 }

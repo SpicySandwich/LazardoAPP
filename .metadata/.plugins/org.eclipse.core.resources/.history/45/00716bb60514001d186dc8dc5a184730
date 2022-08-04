@@ -1,0 +1,42 @@
+package com.client.LazardoClient.DAO;
+
+
+import java.util.List;
+
+import com.client.LazardoClient.Model.CartProduct;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface BuyProductRepo {
+	
+	final String CART_PRODUCT = "INSERT INTO  tbpurchasedetails (client_purchase_id, client_product_purchase_id) "
+			                                  + "VALUES "
+			                                  + "<foreach item='each_item_name' collection='cartProduct' open='' separator=',' close=''>"
+			                                  + "((SELECT client_id FROM tbclientdetails WHERE client_email = #{clientEmail}), #{cartProductID}) "
+			                                  + "</foreach>";
+	
+	
+	
+	  @Insert({
+	        "<script>",
+	        "INSERT tbpurchasedetails",
+	            "(client_purchase_id, client_product_purchase_id)",
+	        "VALUES" +  
+	            "<foreach item='each_item_name' collection='cartProduct' open='' separator=',' close=''>" +
+	                "(" +
+	                    "#{each_item_name.column1,jdbcType=INTEGER},",
+	                    "#{each_item_name.column2,jdbcType=VARCHAR},",
+	                    "(SELECT SOME_DB_FUNCTION(#{each_item_name.column3,jdbcType=DATE})),",
+	                    "#{each_item_name.period.start,jdbcType=TIME}" +
+	                ")" +
+	            "</foreach>",
+	    "</script>"})
+	
+	@Insert(CART_PRODUCT)
+	public Integer addProductTOClient(CartProduct  cartProduct);
+	
+	
+
+}
