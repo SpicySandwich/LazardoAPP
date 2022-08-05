@@ -1,0 +1,17 @@
+package com.client.LazardoClient.DAO;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+@Mapper
+public interface ValidationRepo {
+	
+	//product not exist
+	 @Select("SELECT EXISTS(SELECT 1 FROM tb_product WHERE purchase_item = #{purchase_item})")
+	boolean ifIDExist(Integer purchase_item);
+	
+	//email is existed
+	
+	//username is existed
+
+}

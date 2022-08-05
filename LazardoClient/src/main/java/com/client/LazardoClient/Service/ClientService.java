@@ -31,22 +31,19 @@ public class ClientService {
 	
 	public ClientLogin signUpClient(ClientLogin clientLogin) {
 		
-		
-		
 		 clientLogin.getClientDetails().setLoginUsername(clientLogin.getUsername());
-
-		 clientLogin.getClientDetails().getCartProduct().forEach(foo -> foo.setClientEmail(clientLogin.getClientDetails().getEmail()));
 
 		if(
 				signUpClientRepo.signUpClient(clientLogin) == true && 
 				signUpClientRepo.insertClientDetails(clientLogin.getClientDetails()) == true) {
 			
-			buyProductRepo.addProductTOClient(clientLogin.getClientDetails().getCartProduct());
-			
 			return siginInClients(clientLogin.getUsername(),clientLogin.getPassword());
 		}
 		return null;
 	}
+	//insert product
+//	 clientLogin.getClientDetails().getCartProduct().forEach(foo -> foo.setClientEmail(clientLogin.getClientDetails().getEmail()));
+//	buyProductRepo.addProductTOClient(clientLogin.getClientDetails().getCartProduct());
 	
 
 

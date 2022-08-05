@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Payment {
 	
+	private String clientEmailPayment;
 	private Double paid;
 	private Double currentBalance;
 

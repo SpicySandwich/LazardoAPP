@@ -1,8 +1,0 @@
-package com.product.LazardoProduct.DAO;
-
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface ProductRepo {
-
-}

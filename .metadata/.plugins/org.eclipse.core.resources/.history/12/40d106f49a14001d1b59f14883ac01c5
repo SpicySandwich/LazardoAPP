@@ -1,0 +1,28 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.Payment;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface PayProductRepo {
+	
+	final String ALL_PRODUCT_PAYMENT ="SELECT SUM(lp.product_price) - cd.money_balance  as balanceafterallpayment "
+																		+ "FROM tbclientlogin cl "
+																		+ "LEFT JOIN tbclientdetails cd "
+																		+ "ON cd.client_id = cl.client_login_id "
+																		+ "LEFT JOIN tbpurchasedetails pd "
+																		+ "ON pd.client_purchase_id =cd.client_id "
+																		+ "LEFT JOIN tblazardoproduct lp "
+																		+ "ON lp.product_id = pd.client_product_purchase_id "
+																		+ "WHERE cd.client_email = #{clientEmailPayment;}" ;
+	
+	@Insert("")
+	public boolean payProductPurhcase(Double payOneItem);
+	
+	@Insert(ALL_PRODUCT_PAYMENT)
+	public boolean payAllProductPurchase(Payment payment);
+
+	
+}

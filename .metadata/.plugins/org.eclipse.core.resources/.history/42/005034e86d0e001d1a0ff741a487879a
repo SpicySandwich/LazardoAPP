@@ -1,9 +1,0 @@
-package com.product.LazardoProduct.Service;
-
-import com.product.LazardoProduct.DTO.ProductDTO;
-
-public interface ProductServiceInt {
-	
-	public ProductDTO saveProductbyDTO(Product product);
-
-}
