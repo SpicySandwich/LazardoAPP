@@ -21,11 +21,11 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
-
+//need for seller
 	@GetMapping( "/signin/{username}/{password}")
 	public ClientLogin singInClient(@PathVariable String username, @PathVariable String password){
 		
-		return clientService.siginInClients(username,password);
+		return clientService.siginInClientsBuyer(username,password);
 
      }
 	

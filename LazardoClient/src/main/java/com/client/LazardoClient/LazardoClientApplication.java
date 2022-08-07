@@ -4,7 +4,7 @@ package com.client.LazardoClient;
 
 import com.client.LazardoClient.Model.ClientDetails;
 import com.client.LazardoClient.Model.ClientLogin;
-import com.client.LazardoClient.Model.ClientPurchase;
+import com.client.LazardoClient.Model.BuyerClientPurchase;
 import com.client.LazardoClient.Model.Product;
 
 import org.apache.ibatis.type.MappedTypes;
@@ -13,7 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MappedTypes({ClientDetails.class,ClientLogin.class,ClientPurchase.class,Product.class})
+@MappedTypes({ClientDetails.class,ClientLogin.class,BuyerClientPurchase.class,Product.class})
 @MapperScan("com.client.LazardoClient.DAO")
 public class LazardoClientApplication {
 

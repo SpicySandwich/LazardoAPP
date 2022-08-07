@@ -3,7 +3,7 @@ package com.client.LazardoClient.DAO;
 
 import java.util.List;
 
-import com.client.LazardoClient.Model.CartProduct;
+import com.client.LazardoClient.Model.BuyerCartProduct;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,7 +22,7 @@ public interface BuyProductRepo {
 															+  "</script>";
 	
 	  @Insert({CART_PRODUCT})
-public Integer addProductTOClient(@Param("cartProduct") List<CartProduct>   cartProduct);
+public Integer addProductTOClient(@Param("cartProduct") List<BuyerCartProduct>   cartProduct);
 
 	
 	

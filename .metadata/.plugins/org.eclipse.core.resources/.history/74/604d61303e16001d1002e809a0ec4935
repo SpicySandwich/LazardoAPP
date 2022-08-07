@@ -1,0 +1,20 @@
+package com.client.LazardoClient.DAO;
+
+import java.util.List;
+
+import com.client.LazardoClient.Model.Product;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface SellerCreateDeleteProductRepo {
+	
+	 final String SELL_PRODUCT = "INSERT INTO tblazardoproduct (product_brand,product_name,product_price,product_current_date,"
+														+ "product_expiration_date,product_comment )"
+														+ "VALUES (#{brand}, #{name},#{price}, #{currentdate}, #{expirationdate}, #{comment})";
+	
+	@Insert(SELL_PRODUCT)
+	public Integer sellerClientAddProduct( List<Product> product);
+
+}

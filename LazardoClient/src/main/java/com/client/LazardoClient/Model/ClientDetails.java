@@ -30,10 +30,15 @@ public class ClientDetails {
 	private Double balance;
 	
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private List<CartProduct>  cartProduct;
+	private Integer role;
 	
-	private List<ClientPurchase>  clientPurchases;
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private List<BuyerCartProduct>  cartProduct;
+	
+	private List<BuyerClientPurchase>  clientPurchases;
 	private Price productTotalPrice;
+	
+	private List<Product> productList;
 	
 	
 	
