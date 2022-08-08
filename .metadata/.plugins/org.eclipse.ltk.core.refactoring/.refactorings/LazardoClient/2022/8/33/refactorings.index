@@ -5,3 +5,6 @@
 1659861058008	Rename type 'CartProduct'
 1659862236954	Rename type 'BuyerClientLogin'
 1659862387726	Rename type 'BuyerClientDetails'
+1659966106396	Rename type 'ClientService'
+1659966956718	Rename type 'SellerCreateDeleteProductRepo'
+1659967118341	Rename type 'ClientController'

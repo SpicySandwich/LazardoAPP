@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.client.LazardoClient.Model.ClientDetails;
 import com.client.LazardoClient.Model.ClientLogin;
-import com.client.LazardoClient.Model.Price;
 import com.client.LazardoClient.Model.Product;
 
 import org.apache.ibatis.annotations.Many;

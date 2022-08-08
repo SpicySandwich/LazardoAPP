@@ -1,0 +1,16 @@
+package com.client.LazardoClient.DAO;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public class SellerDeleteUpdateProductRepo {
+	
+	
+	@Delete("")
+	public boolean deleteSellerProduct();
+	
+	@Update("")
+	public boolean updateSellerProduct();
+
+}

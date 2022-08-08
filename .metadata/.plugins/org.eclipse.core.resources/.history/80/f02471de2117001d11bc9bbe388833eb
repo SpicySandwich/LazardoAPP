@@ -1,0 +1,24 @@
+package com.client.LazardoClient.Service;
+
+import com.client.LazardoClient.DAO.SellerShowProduct;
+import com.client.LazardoClient.Model.ClientLogin;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SellerClientService {
+	
+	@Autowired
+	private SellerShowProduct sellerShowProduct;
+	
+	@Autowired
+	
+	
+	
+	public ClientLogin siginInClientsSeller(String username, String password) {
+		
+		return sellerShowProduct.singInClient(username,password);
+	}
+
+}

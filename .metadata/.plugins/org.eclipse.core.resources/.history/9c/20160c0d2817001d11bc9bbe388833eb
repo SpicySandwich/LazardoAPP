@@ -1,0 +1,22 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.Product;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface SellerDeleteUpdateProductRepo {
+	
+	final String DELETE_PRODUCT_SELLER = "";
+	
+	final String UPDATE_PRODUCT_SELLER = "";
+	
+	
+	@Delete(DELETE_PRODUCT_SELLER)
+	public boolean deleteSellerProduct(Product product);
+	
+	@Update(UPDATE_PRODUCT_SELLER)
+	public boolean updateSellerProduct();
+
+}

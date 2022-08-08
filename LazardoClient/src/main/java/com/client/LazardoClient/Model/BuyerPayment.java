@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class BuyerPayment {
 	
 	private String clientEmailPayment;
-	private Double paid;
-	private Double currentBalance;
+	private Integer productIDPurchase;
 
 }
