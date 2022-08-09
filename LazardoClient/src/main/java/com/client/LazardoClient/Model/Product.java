@@ -25,11 +25,11 @@ public class Product {
 	private String name;
 	private Double price;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, lenient = OptBoolean.FALSE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING, lenient = OptBoolean.FALSE)
    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime currentdate;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, lenient = OptBoolean.FALSE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING, lenient = OptBoolean.FALSE)
    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime expirationdate;
 	private String comment;

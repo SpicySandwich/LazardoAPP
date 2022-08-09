@@ -1,6 +1,6 @@
 package com.client.LazardoClient.DAO;
 
-import com.client.LazardoClient.Model.ClientDetails;
+import com.client.LazardoClient.Model.BuyerClientDetails;
 import com.client.LazardoClient.Model.ClientLogin;
 
 import org.apache.ibatis.annotations.Insert;
@@ -21,6 +21,6 @@ public interface SignUpClientRepo {
 	public boolean signUpClient(ClientLogin clientLogin);
 	
 	@Insert(INSERT_CLIENT_DETAILS)
-	public boolean  insertClientDetails(ClientDetails clientDetails);
+	public boolean  insertClientDetails(BuyerClientDetails clientDetails);
 
 }

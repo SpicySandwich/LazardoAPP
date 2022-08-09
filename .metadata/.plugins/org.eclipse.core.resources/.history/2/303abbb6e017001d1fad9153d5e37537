@@ -1,0 +1,5 @@
+package com.client.LazardoClient.ModelException;
+
+public class AlreadyExistException extends RuntimeException{
+
+}

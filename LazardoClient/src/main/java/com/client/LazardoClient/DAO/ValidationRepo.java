@@ -15,6 +15,10 @@ public interface ValidationRepo {
 	 
 	 @Select("SELECT EXISTS(SELECT 1 FROM tbclientlogin WHERE client_username = #{user})")
 	 boolean ifUsernameExist(@Param("user") String user);
+	 
+	 @Select("SELECT cd.role FROM tbclientlogin cl LEFT JOIN tbclientdetails cd ON cd.client_id = cl.client_login_id "
+	 		      + "WHERE cl.client_username = #{username} AND cl.client_password = #{password} ;")
+	 Integer checkRole(@Param("username") String username,@Param("password") String pass);
 	
 
 

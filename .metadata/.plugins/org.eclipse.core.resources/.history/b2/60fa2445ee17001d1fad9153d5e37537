@@ -1,0 +1,37 @@
+package com.client.LazardoClient.Validation;
+
+import com.client.LazardoClient.ModelException.NotNullException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClientInputValidation {
+	
+	@Autowired
+	private ClientRepoValidation validation;
+	
+	public Integer checkProductIdExist(Integer id) {
+		validation.productIDValidation(id);
+		return id;
+	}
+	
+	public String checkEmailFormat( String email) {
+		validation.emailValidation(email);
+		if(email.isEmpty()) throw new NotNullException("Email is empty");
+		if(!email.matches("^(.+)@(.+)$")) throw new NotNullException("Email format is invalid");
+		return email;
+	}
+	
+	public String checkUsernameNotNull(String username) {
+		validation.usernameValidation(username);
+		if(username.isEmpty()) throw new NotNullException("Email is empty");
+		return username;
+	}
+	
+	public String checkPasswordFormat(String password) {
+		if(password.isEmpty()) throw new NotNullException("Email is empty");
+		return password;
+	}
+
+}

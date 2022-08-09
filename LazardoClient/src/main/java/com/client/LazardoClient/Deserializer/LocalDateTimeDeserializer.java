@@ -22,7 +22,7 @@ public class LocalDateTimeDeserializer  extends StdDeserializer<LocalDateTime>{
 	@Override
 	public LocalDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
 
-        DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 		
 		LocalDate localDate = LocalDate.parse(p.getValueAsString(), localDateFormatter);

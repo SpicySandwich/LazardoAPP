@@ -1,0 +1,7 @@
+package com.client.LazardoClient.Model;
+
+public class SellerTotalProductBalance {
+	
+	private Double totalProuctBalanceTransfer;
+
+}

@@ -1,6 +1,6 @@
 package com.client.LazardoClient.DTO;
 
-import com.client.LazardoClient.Model.ClientDetails;
+import com.client.LazardoClient.Model.BuyerClientDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -30,6 +30,6 @@ public class ConsumerLoginDTO {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String reTypePassword;
 	
-	private ClientDetails consumerClientDetails;
+	private BuyerClientDetails consumerClientDetails;
 
 }

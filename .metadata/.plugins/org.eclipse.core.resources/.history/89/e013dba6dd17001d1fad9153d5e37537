@@ -1,0 +1,66 @@
+package com.client.LazardoClient.Service;
+
+import com.client.LazardoClient.DAO.BuyerSignInRepo;
+import com.client.LazardoClient.DAO.SellerSignInRepo;
+import com.client.LazardoClient.DAO.SignUpClientRepo;
+import com.client.LazardoClient.DAO.ValidationRepo;
+import com.client.LazardoClient.Model.ClientLogin;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MainClientService {
+	
+	@Autowired
+	private SignUpClientRepo signUpClientRepo;
+	
+	@Autowired
+	private BuyerClientService buyerClientService;
+	
+	@Autowired
+	private SellerClientService sellerClientService;
+	
+	@Autowired
+	private SellerSignInRepo sellerShowProduct;
+	
+	@Autowired
+	private BuyerSignInRepo buyerSignInRepo;
+	
+	@Autowired
+	private ValidationRepo validationRepo;
+	
+	 public ClientLogin siginInMainClientsSeller(String username, String password) {
+			
+		  Integer role = validationRepo.checkRole(username, password);
+		 if (role == 1) return  sellerShowProduct.singInClient(username,password);
+		 if (role == 2) return buyerSignInRepo.singInClient(username, password);
+			 return null;
+		}
+	
+	
+	//Sign up then direct to SignIn depend on role buyer or seller
+	public ClientLogin signUpClient(ClientLogin clientLogin) {
+		
+		 clientLogin.getBuyerDetails().setLoginUsername(clientLogin.getUsername());
+
+		if(signUpClientRepo.signUpClient(clientLogin) == true && 
+				signUpClientRepo.insertClientDetails(clientLogin.getBuyerDetails()) == true) {
+			
+			//Role 1  Buyer, 2 Seller
+			if(clientLogin.getBuyerDetails().getRole() == 1) {
+				return buyerClientService.siginInClientsBuyer(clientLogin.getUsername(),clientLogin.getPassword());
+			}else if(clientLogin.getSellerDetails().getRole() == 2) {
+				return sellerClientService.siginInClientsSeller(clientLogin.getUsername(),clientLogin.getPassword());
+			}	
+		}
+		return null;
+	}
+	
+	//Sign in then direct to which role
+	
+	
+	
+	
+
+}

@@ -1,0 +1,21 @@
+package com.client.LazardoClient.Model;
+
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class SellerHistoryTransaction {
+	
+	private String buyerEmaill;
+	private String productName;
+	private Double productPrice;
+	private Double balanceTransfer;
+	private String sellerEmail;
+	private LocalDateTime datePaid;
+
+}
