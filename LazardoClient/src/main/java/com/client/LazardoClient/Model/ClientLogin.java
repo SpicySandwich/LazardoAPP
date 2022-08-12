@@ -28,8 +28,7 @@ public class ClientLogin {
 	private BuyerClientDetails buyerDetails;
 	
 	private SellerClientDetails sellerDetails;
-	
-	
+
 
 }
 

@@ -12,23 +12,33 @@ public class ClientRepoValidation {
 	
 	@Autowired
 	private ValidationRepo validationRepo;
-	
+
+	   public boolean usernameValidationSignUp(String username) {
+		   boolean checkUser =  validationRepo.ifUsernameExist(username);
+		   if(checkUser  == true) throw new AlreadyExistException("Username " + username + " already exist. Kindly create new one");
+			return checkUser;
+		}
+	   
+	   public String passwordValidationSignIn(String user) {
+		   String checkPass =  validationRepo.checkPassword(user);
+		   return checkPass;
+	   }
+	   
+	   public boolean emailValidationSignUp(String email) {
+			boolean checkEmail =  validationRepo.ifEmailExist(email);
+			if(checkEmail == true) throw new AlreadyExistException("Email "+ email + " already exist. Kindly change");
+			return checkEmail;
+			
+		}
+	   
        public Integer productIDValidation(Integer id) {
 	   boolean checkid =  validationRepo.ifProductExist(id);
 		if(checkid == false) throw new InvalidException("Product is not available");
 		return id;
 	}
 	
-	public String emailValidation(String email) {
-		boolean checkEmail =  validationRepo.ifEmailExist(email);
-		if(checkEmail == true) throw new AlreadyExistException("Email "+ email + "already exist. Kindly change");
-		return email;
-	}
 	
-   public String usernameValidation(String username) {
-	   boolean checkUser =  validationRepo.ifUsernameExist(username);
-	   if(checkUser  == true) throw new AlreadyExistException("Username " + username + "already exist. Kindly create new one");
-		return username;
-	}
+	
+
 
 }

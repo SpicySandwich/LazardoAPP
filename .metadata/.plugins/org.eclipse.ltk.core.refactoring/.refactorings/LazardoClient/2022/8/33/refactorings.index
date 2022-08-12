@@ -18,3 +18,5 @@
 1660041327773	Rename type 'PayProductRepo'
 1660041992524	Rename type 'BothFunctionController'
 1660042004117	Rename type 'BothFunctionClientService'
+1660282847837	Rename type 'BuyProductRepo'
+1660282856099	Rename type 'BuyyerBuyProductRepo'

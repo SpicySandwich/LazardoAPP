@@ -50,7 +50,7 @@ public interface BuyerSignInRepo {
 			@Result(property = "password", column = "password"),
 			@Result(property = "buyerDetails", column = "loginId",javaType = BuyerClientDetails.class, one = @One(select = "selectClientDetail"))		
 		})
-		public ClientLogin singInClient(@Param("username") String username, @Param("password")String password);
+		public ClientLogin buyerSignIn(@Param("username") String username, @Param("password")String password);
 		
 		@Select(SELECT_CLIENT_DETAILS)
 		@Results(value = {

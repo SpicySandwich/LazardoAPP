@@ -26,7 +26,7 @@ public class SellerClientService {
 	//Seller Signin
 	  public ClientLogin siginInClientsSeller(String username, String password) {
 			
-			return sellerShowProduct.singInClient(username,password);
+			return sellerShowProduct.sellerSignIn(username,password);
 		}
 	
 	//Seller add product to sell

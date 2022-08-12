@@ -3,7 +3,7 @@ package com.client.LazardoClient.Service;
 
 import java.util.List;
 
-import com.client.LazardoClient.DAO.BuyProductRepo;
+import com.client.LazardoClient.DAO.BuyerBuyProductRepo;
 import com.client.LazardoClient.DAO.BuyerPayProductRepo;
 import com.client.LazardoClient.DAO.BuyerSignInRepo;
 import com.client.LazardoClient.DAO.ValidationRepo;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class BuyerClientService {
 	
 	@Autowired
-	private BuyProductRepo buyProductRepo;
+	private BuyerBuyProductRepo buyProductRepo;
 	
 	@Autowired
 	private BuyerPayProductRepo payProductRepo;
@@ -27,11 +27,11 @@ public class BuyerClientService {
 	private ValidationRepo validationRepo;
 	
 	@Autowired
-	private BuyerSignInRepo signInRepo;
+	private BuyerSignInRepo buyerSignInRepo;
 	
 	//Buyer Sign in
     public ClientLogin siginInClientsBuyer(String username, String password) {
-		return signInRepo.singInClient(username,password);
+		return buyerSignInRepo.buyerSignIn(username,password);
 	}
 	
 	//Buyer cart a product

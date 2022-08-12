@@ -17,30 +17,27 @@ public class ClientInputValidation {
 		return id;
 	}
 	
-	public String checkEmailFormat( String email) {
-		validation.emailValidation(email);
+	public boolean checkEmailFormatSignUp( String email) {
+		validation.emailValidationSignUp(email);
 		if(email.trim().isEmpty()) throw new NotNullException("Email is empty or contain space");
 		if(!email.matches("^(.+)@(.+)$")) throw new NotNullException("Email format is invalid");
-		return email;
+		return false;
 	}
 	
-	public boolean checkUsernameNotNull(String username) {
-		boolean valid = true;
-		validation.usernameValidation(username);
+	public String checkUsernameNotNullSignUp(String username) {
 		if(username.trim().isEmpty()) throw new NotNullException("Username is empty or contain space");
-		return valid;
+		return username;
 	}
 	
-	public boolean checkPasswordFormat(String password) {
-		boolean valid = true;
+	public String checkPasswordFormatSignUp(String password) {
 		if(password.trim().isEmpty())throw new NotNullException("Password is empty or contain space");
         if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{7,15}$"))
 			throw new InvalidException("Password must contain at "
-					+ "\n least one digit [0-9],one lowercase Latin character [a-z],"
-					+ "\n least one uppercase Latin character [A-Z],"
-					+ "\n least least one special character like ! @ # & ( ),"
-					+ "\n length of at least 7 characters and a maximum of 15 characters");
-		return valid;
+					+ "least one digit [0-9],one lowercase Latin character [a-z],"
+					+ "least one uppercase Latin character [A-Z],"
+					+ "least least one special character like ! @ # & ( ),"
+					+ "length of at least 7 characters and a maximum of 15 characters");
+		return password;
 	}
 
 }

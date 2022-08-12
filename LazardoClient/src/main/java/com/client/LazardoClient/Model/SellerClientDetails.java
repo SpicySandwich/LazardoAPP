@@ -4,6 +4,7 @@ package com.client.LazardoClient.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -30,7 +31,7 @@ public class SellerClientDetails {
 	private Double balance;
 	
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private Integer role;
+	private Integer role = 2;
 	
 	private List<Product> productList;
 	private List<SellerHistoryTransaction> transactionHistory;

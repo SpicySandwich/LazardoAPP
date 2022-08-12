@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Price"/>
-    <fullyQualifiedTypeName name="java.lang.Package"/>
-    <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.One"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Options"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
@@ -21,19 +17,16 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Result"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Payment"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.SellerShowProduct"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.PayProductRepo"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.SellerSellProductRepo"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Delete"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Product"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Update"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Insert"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Controller.SellerClientController"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerClientDetails"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerHistoryTransaction"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerTotalProductBalance"/>
@@ -47,17 +40,24 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.Service.SellerClientService"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Service.MainClientService"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.ValidationRepo"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.AlreadyExistException"/>
     <fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.NotNullException"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.ClientRepoValidation"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.ClientInputValidation"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.InvalidException"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.ClientRepoValidation"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientLogin"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.BuyerClientDetails"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerClientDetails"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.NotNullException"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Delete"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.CompileValidation"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.InvalidException"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.util.Objects"/>
 </qualifiedTypeNameHistroy>
