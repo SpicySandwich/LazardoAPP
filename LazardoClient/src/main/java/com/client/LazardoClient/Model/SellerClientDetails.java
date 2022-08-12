@@ -33,7 +33,7 @@ public class SellerClientDetails {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Integer role = 2;
 	
-	private List<Product> productList;
+	private List<SellerProduct> productList;
 	private List<SellerHistoryTransaction> transactionHistory;
 	
 	private SellerTotalProductBalance totalProductPaid;

@@ -2,7 +2,7 @@ package com.client.LazardoClient.Controller;
 
 import java.util.List;
 
-import com.client.LazardoClient.Model.Product;
+import com.client.LazardoClient.Model.SellerProduct;
 import com.client.LazardoClient.Service.SellerClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class SellerClientController  implements InterfaceController{
 	
 	
 	@PostMapping("/sell")
-	public Integer sellProduct(@RequestBody List<Product> products) {
+	public Integer sellProduct(@RequestBody List<SellerProduct> products) {
 		
 		return sellerClientService.sellProduct(products);
 		

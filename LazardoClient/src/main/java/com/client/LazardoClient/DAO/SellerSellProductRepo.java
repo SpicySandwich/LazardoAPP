@@ -2,7 +2,7 @@ package com.client.LazardoClient.DAO;
 
 import java.util.List;
 
-import com.client.LazardoClient.Model.Product;
+import com.client.LazardoClient.Model.SellerProduct;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -21,6 +21,6 @@ public interface SellerSellProductRepo {
 					+   "</foreach>"
 					+  "</script>";
 	@Insert(SELL_PRODUCT)
-	public Integer sellerClientAddProduct(@Param("sellProduct") List<Product> sellProduct);
+	public Integer sellerClientAddProduct(@Param("sellProduct") List<SellerProduct> sellProduct);
 
 }

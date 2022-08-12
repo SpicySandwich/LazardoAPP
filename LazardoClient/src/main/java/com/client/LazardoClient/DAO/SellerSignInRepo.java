@@ -3,7 +3,7 @@ package com.client.LazardoClient.DAO;
 import java.util.List;
 
 import com.client.LazardoClient.Model.ClientLogin;
-import com.client.LazardoClient.Model.Product;
+import com.client.LazardoClient.Model.SellerProduct;
 import com.client.LazardoClient.Model.SellerClientDetails;
 import com.client.LazardoClient.Model.SellerHistoryTransaction;
 import com.client.LazardoClient.Model.SellerTotalProductBalance;
@@ -75,7 +75,7 @@ public interface SellerSignInRepo {
 			SellerClientDetails selectClientDetail();
 			
 			@Select(SELECT_CLIENT_PRODUCT)
-			Product selectProductList();
+			SellerProduct selectProductList();
 			
 			@Select(SELECT_TRANSACTION_HISTORY)
          List<SellerHistoryTransaction>   selectTransactionHistory();

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.InternalException"/>
     <fullyQualifiedTypeName name="lombok.AccessLevel"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.DAO.BuyProductRepo"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientDetails"/>
@@ -21,9 +20,6 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.Controller.SellerClientController"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerHistoryTransaction"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerTotalProductBalance"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Controller.InterfaceController"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Service.BothFunctionClientService"/>
@@ -43,21 +39,25 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.BuyerClientDetails"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerClientDetails"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.NotNullException"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Delete"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.CompileValidation"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.InvalidException"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.util.Objects"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.BuyerCartProduct"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.BuyerPayment"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.Product"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Mapper"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.BuyerCartProduct"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Delete"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerChangesProduct"/>
 </qualifiedTypeNameHistroy>

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.client.LazardoClient.Model.BuyerCartProduct;
 import com.client.LazardoClient.Model.BuyerPayment;
-import com.client.LazardoClient.Model.Product;
+import com.client.LazardoClient.Model.SellerProduct;
 import com.client.LazardoClient.Service.BuyerClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;

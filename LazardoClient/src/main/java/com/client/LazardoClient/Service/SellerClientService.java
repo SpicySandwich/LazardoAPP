@@ -6,7 +6,7 @@ import com.client.LazardoClient.DAO.SellerSellProductRepo;
 import com.client.LazardoClient.DAO.SellerSignInRepo;
 import com.client.LazardoClient.DAO.ValidationRepo;
 import com.client.LazardoClient.Model.ClientLogin;
-import com.client.LazardoClient.Model.Product;
+import com.client.LazardoClient.Model.SellerProduct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class SellerClientService {
 		}
 	
 	//Seller add product to sell
-	public Integer sellProduct(List<Product> sellProduct) {
+	public Integer sellProduct(List<SellerProduct> sellProduct) {
 		
 		Integer saveOrNot = sellerSellProductRepo.sellerClientAddProduct(sellProduct);
 		return saveOrNot;

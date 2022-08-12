@@ -6,7 +6,7 @@ import com.client.LazardoClient.Model.BuyerClientDetails;
 import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Model.BuyerClientPurchase;
 import com.client.LazardoClient.Model.Price;
-import com.client.LazardoClient.Model.Product;
+import com.client.LazardoClient.Model.SellerProduct;
 
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
@@ -70,13 +70,13 @@ public interface BuyerSignInRepo {
 		@Result(property = "clientPurchaseId", column = "clientPurchaseId"),
 		@Result(property = "purchaseclientid", column = "purchaseclientid"),
 		@Result(property = "purchaseproductid", column = "purchaseproductid"),
-		@Result(property = "productList", column = "purchaseproductid",javaType = Product.class, one = @One(select = "selectProductListCLient"))
+		@Result(property = "productList", column = "purchaseproductid",javaType = SellerProduct.class, one = @One(select = "selectProductListCLient"))
 		})
 		List<BuyerClientPurchase>  selectPurchaseDetail();
 		
 		
 		@Select(SELECT_CLIENT_PRODUCT)
-		Product selectProductListCLient();
+		SellerProduct selectProductListCLient();
 		
 		@Select (SELECT_TOTAL_PRODUCT_PRICE )
 		Price selectTotalPrice();

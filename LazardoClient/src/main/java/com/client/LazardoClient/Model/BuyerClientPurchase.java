@@ -15,6 +15,6 @@ public class BuyerClientPurchase {
 	private Integer clientPurchaseId;
 	private Integer purchaseclientid;
 	private Integer purchaseproductid;
-	private Product productList;
+	private SellerProduct productList;
 
 }
