@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
 public interface SellerSellProductRepo {
 	 
 		final String SELL_PRODUCT =   "<script>"
-                +  "INSERT INTO  tbpurchasedetails (sellerid,product_brand,product_name,product_price,product_expiration_date,product_comment) "
+                +  "INSERT INTO  tblazardoproduct (sellerid,product_brand,product_name,product_price,product_expiration_date,product_comment) "
                 +  "VALUES" 
 					+   "<foreach item='parameter_item' collection='sellProduct' open='' separator=',' close=''>" 
 					+  "((SELECT client_id FROM tbclientdetails WHERE client_email = #{parameter_item.clientSellerEmail}), "

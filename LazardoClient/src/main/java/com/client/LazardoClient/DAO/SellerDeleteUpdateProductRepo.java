@@ -13,7 +13,6 @@ public interface SellerDeleteUpdateProductRepo {
 	
 	final String UPDATE_PRODUCT_SELLER = "";
 	
-	
 	@Delete(DELETE_PRODUCT_SELLER)
 	public boolean deleteSellerProduct(Integer deleteID, String sellerEmail);
 	

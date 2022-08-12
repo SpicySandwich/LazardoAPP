@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import com.client.LazardoClient.Deserializer.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.OptBoolean;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 
@@ -19,6 +21,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Product {
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private String clientSellerEmail;
 	
 	private Integer id;
 	private String brand;
