@@ -31,11 +31,9 @@ public class ClientRepoValidation {
 			
 		}
 	   
-       public Integer productIDValidation(Integer id) {
-	   boolean checkid =  validationRepo.ifProductExist(id);
-		if(checkid == false) throw new InvalidException("Product is not available");
-		return id;
-	}
+//       public boolean productIDValidation(Integer id) {
+//		return validationRepo.ifProductExist(id);
+//	}
 	
 	
 	

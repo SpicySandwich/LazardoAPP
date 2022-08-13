@@ -1,5 +1,7 @@
 package com.client.LazardoClient.DAO;
 
+import com.client.LazardoClient.Model.BuyerCartProduct;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,8 +10,25 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface ValidationRepo {
 	
-	 @Select("SELECT EXISTS(SELECT 1 FROM tblazardoproduct WHERE product_id = #{id});")
-	boolean ifProductExist(@Param("id") Integer id);
+	 @Select("SELECT EXISTS( "
+	 		+ "SELECT 1 "
+	 		+ "FROM tbclientdetails cd "
+	 		+ "LEFT JOIN tbpurchasedetails pd "
+	 		+ "ON cd.client_id = pd.client_purchase_id "
+	 		+ "WHERE cd.client_email = #{clientEmail} AND pd.payment_status = 1 AND pd.purchase_id = #{cartProductID} "
+	 		+ ");")
+	boolean ifProductExistBuyer(@Param("cartProductID") Integer cartProductID, @Param("clientEmail") String clientEmail);
+	 
+	 @Select("SELECT EXISTS( "
+	 		+ "SELECT 1\r\n"
+	 		+ "FROM tbclientdetails cd "
+	 		+ "LEFT JOIN tblazardoproduct lp "
+	 		+ "ON lp.sellerid = cd.client_id "
+	 		+ "LEFT JOIN tbpurchasedetails pd "
+	 		+ "ON lp.product_id = pd.client_purchase_id "
+	 		+ "WHERE cd.client_email = #{clientEmail} AND lp.product_id = #{cartProductID} AND pd.client_purchase_id IS NULL OR pd.client_purchase_id ='' "
+	 		+ ");")
+		boolean ifProductExistSeller(@Param("cartProductID") Integer cartProductID, @Param("clientEmail") String clientEmail);
 	 
 	 @Select("SELECT EXISTS(SELECT 1 FROM tbclientdetails WHERE client_email = #{email});")
 	 boolean ifEmailExist(@Param("email") String  email);

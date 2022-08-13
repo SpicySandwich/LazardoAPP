@@ -1,0 +1,25 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.BuyerClientDetails;
+import com.client.LazardoClient.Model.SellerClientDetails;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+
+@Mapper
+public interface ClientDetailsChanges {
+	
+	final String BUYER_DETAIL_UPDATE = "UPDATE tbclientdetails  cd "
+			+ "SET cd. client_email = 'conred@gmail.com', cd.client_firstname = 'conblue', cd.client_lastname = 'bluealas' "
+			+ "WHERE cd.client_email = 'conred@gmail.com' AND cd.role = 1;";
+	
+	final String SELLER_DETAIL_UPDATE = "";
+	
+	@Update(BUYER_DETAIL_UPDATE )
+	Integer changeBuyerDetails(@Param("buyerClientDetails") BuyerClientDetails buyerClientDetails);
+	
+	@Update(SELLER_DETAIL_UPDATE)
+	Integer changesSellerDetails(@Param("sellerClientDetails") SellerClientDetails sellerClientDetails);
+
+}

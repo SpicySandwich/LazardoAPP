@@ -1,0 +1,14 @@
+package com.client.LazardoClient.DAO;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
+
+@Mapper
+public interface ChangeRole {
+	
+	final String CHANGE_ROLE = "";
+	
+	@Update( CHANGE_ROLE)
+	Integer changeClientRole(Integer role);
+
+}

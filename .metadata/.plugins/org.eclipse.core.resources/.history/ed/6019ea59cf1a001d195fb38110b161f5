@@ -1,0 +1,5 @@
+package com.client.LazardoClient.DAO;
+
+public class ChangeRole {
+
+}

@@ -1,10 +1,15 @@
 package com.client.LazardoClient.Service;
 
 import com.client.LazardoClient.DAO.BuyerSignInRepo;
+import com.client.LazardoClient.DAO.ChangeRole;
+import com.client.LazardoClient.DAO.ClientBalance;
 import com.client.LazardoClient.DAO.SellerSignInRepo;
 import com.client.LazardoClient.DAO.SignUpClientRepo;
 import com.client.LazardoClient.DAO.ValidationRepo;
+import com.client.LazardoClient.Model.AddBalance;
+import com.client.LazardoClient.Model.ChangeClientRole;
 import com.client.LazardoClient.Model.ClientLogin;
+import com.client.LazardoClient.Model.TransferBalance;
 import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.Validation.CompileValidation;
 
@@ -18,12 +23,6 @@ public class MainClientService {
 	private SignUpClientRepo signUpClientRepo;
 	
 	@Autowired
-	private BuyerClientService buyerClientService;
-	
-	@Autowired
-	private SellerClientService sellerClientService;
-	
-	@Autowired
 	private SellerSignInRepo sellerShowProduct;
 	
 	@Autowired
@@ -34,6 +33,13 @@ public class MainClientService {
 	
 	@Autowired
 	private CompileValidation compileValidation;
+	
+	@Autowired
+	private ClientBalance clientBalance;
+	
+	@Autowired
+	private ChangeRole changeRole;
+	
 	
 	 public ClientLogin siginInMainClient(String username, String password) {
 		 
@@ -80,5 +86,34 @@ public class MainClientService {
 			 throw new InvalidException("Invalid sign up for seller");
 				
 			}
+		
+		//add balance
+		public String addBalance(AddBalance addBalance) {
+			compileValidation.checkaddedBalance(addBalance);
+		  if (clientBalance.addBalance(addBalance) == true) 
+			  return	 "Succefully added " + addBalance.getBalance() + " to " + addBalance.getClientEmail();
+		  else  throw new InvalidException("Unable to add balance to " + addBalance.getClientEmail());
+		
+		}
+		
+		//transfer balance
+		public String transferBalance (TransferBalance transferBalance) {
+			compileValidation.checkTransferBalance(transferBalance);
+			if(clientBalance.transferBalance1(transferBalance) == true && 
+					clientBalance.transferBalance2(transferBalance.getBalanceTransfer(),transferBalance.getReceiverEmail()) ==true) {
+				return "Succefully transferred " + transferBalance.getBalanceTransfer() + " to " + transferBalance.getReceiverEmail();
+			}
+			else throw new InvalidException("Unable to transfer balance to " +  transferBalance.getReceiverEmail() + " due to insufficient balance");
+			
+		}
+		
+		//change role
+		public String changeClientRole(ChangeClientRole changeClientRole) {
+			compileValidation.checkRole(changeClientRole);
+			 changeRole.changeClientRole(changeClientRole);
+			 return "Succefully change role for " + changeClientRole.getClientEmail() ;
+		}
+		
+		
 
 }

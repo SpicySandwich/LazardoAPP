@@ -1,9 +1,0 @@
-package com.client.LazardoClient.Validation;
-
-public class ClientInputValidation {
-	
-	public String checkEmailFormat(String email) {
-		
-	}
-
-}

@@ -1,0 +1,24 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.AddBalance;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
+
+@Mapper
+public interface ClientBalance {
+	
+	final String ADD_BALANCE = "UPDATE tbclientdetails  cd "
+													+ "JOIN ( "
+													+ "SELECT cd2.money_balance AS currentbalance, cd2.client_email AS clientemail "
+													+ "FROM tbclientdetails cd2 "
+													+ "WHERE cd2.client_email = #{clientEmail} "
+													+ ") balance "
+													+ "SET cd.money_balance = balance.currentbalance + #{balance} "
+													+ "WHERE cd.client_email = balance.clientemail; ";
+	
+	@Update(ADD_BALANCE)
+	Double addBalance(@Param("addBalance") AddBalance addBalance);
+
+}

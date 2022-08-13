@@ -1,0 +1,16 @@
+package com.client.LazardoClient.DAO;
+
+import com.client.LazardoClient.Model.BuyerClientDetails;
+import com.client.LazardoClient.Model.SellerClientDetails;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface ClientDetailsChanges {
+	
+	Integer changeBuyerDetails(@Param("clientDetails") BuyerClientDetails buyerClientDetails);
+	
+	Integer changesSellerDetails(@Param("sellerClientDetails") SellerClientDetails sellerClientDetails);
+
+}
