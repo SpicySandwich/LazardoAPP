@@ -1,10 +1,15 @@
 package com.client.LazardoClient.Validation;
 
+import java.util.List;
+
 import com.client.LazardoClient.Model.AddBalance;
+import com.client.LazardoClient.Model.BuyerCartProduct;
 import com.client.LazardoClient.Model.BuyerClientDetails;
+import com.client.LazardoClient.Model.BuyerPayment;
 import com.client.LazardoClient.Model.ChangeClientRole;
 import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Model.SellerClientDetails;
+import com.client.LazardoClient.Model.SellerProduct;
 import com.client.LazardoClient.Model.TransferBalance;
 import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.ModelException.NotNullException;
@@ -21,7 +26,23 @@ public class CompileValidation {
 		@Autowired
 		private ClientRepoValidation clientRepoValidation;
 		
+		public void checkSellerAddProduct(List<SellerProduct>  sellerProduct) {
+			sellerProduct.forEach(prod -> {
+				clientInputValidation.checkEmailTrue(prod.getClientSellerEmail());
+				clientInputValidation.checkProductBrand(prod.getBrand());
+				clientInputValidation.checkProductName(prod.getName());
+				clientInputValidation.checkDouble(prod.getPrice());
+				clientInputValidation.checkProductComment(prod.getComment());
+			});	
+		}
 		
+		public void checkBuyerPurchaseProduct(List<BuyerCartProduct> buyerCartProducts) {
+			buyerCartProducts.forEach( buy -> {
+				clientInputValidation.checkEmailTrue(buy.getClientEmail());
+				clientInputValidation.checkProductIDBuyerCartProduct( buy.getCartProductID());
+			});
+			
+		}
 	
 	  public ClientLogin signUpValidation(ClientLogin clientLogin) {
 		  
@@ -90,6 +111,25 @@ public class CompileValidation {
 		public void checkProductDeleteSeller(Integer id,String email) {
 			clientInputValidation.checkProductIDSellerr(id, clientInputValidation.checkEmailTrue(email));
 		}
+		
+		public void checkUpdateSellerProduct(SellerProduct sellerProduct) {
+			clientInputValidation.checkEmailTrue(sellerProduct.getClientSellerEmail());
+			clientInputValidation.checkProductIDUpdateExist(sellerProduct.getId(), sellerProduct.getClientSellerEmail());
+			clientInputValidation.checkDouble(sellerProduct.getPrice());
+		}
+		
+		public void checkBuyerPayingProduct(BuyerPayment buyerPayment) {
+			clientInputValidation.checkEmailTrue(buyerPayment.getClientEmailPayment());
+			clientInputValidation.checkBuyerCartProductPaymentUnpaid(buyerPayment.getClientEmailPayment(), buyerPayment.getProductIDPurchase());
+		}
+		
+		public void checkClientSignIn(String username, String password){
+			clientRepoValidation.usernameValidationSignIn(username,password);
+		}
+		
+	
+		
+	
 		
 //		public static int getCount(int count) {
 //		    return count ++;

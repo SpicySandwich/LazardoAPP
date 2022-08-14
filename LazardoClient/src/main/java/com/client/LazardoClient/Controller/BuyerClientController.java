@@ -7,7 +7,6 @@ import com.client.LazardoClient.Model.BuyerClientDetails;
 import com.client.LazardoClient.Model.BuyerPayment;
 import com.client.LazardoClient.Service.BuyerClientService;
 
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,22 +21,22 @@ public class BuyerClientController implements InterfaceController{
 	private BuyerClientService buyerClientService;
 	
 	
-	@PostMapping("/cart")
-	public Integer cartProduct(@RequestBody List<BuyerCartProduct>  cartProduct) {
+	@PostMapping("/cartproduct")
+	public String cartProduct(@RequestBody List<BuyerCartProduct>  cartProduct) {
 		return buyerClientService.BuyerPurchaseProduct(cartProduct);
 	}
 	
-	@PutMapping("/pay")
-	public boolean payProduct(@RequestBody BuyerPayment payment) {
+	@PutMapping("/payproduct")
+	public String payProduct(@RequestBody BuyerPayment payment) {
 	return	buyerClientService.BuyerPayProduct(payment);
 	}
 	
-	@PutMapping("/buyerupdate")
+	@PutMapping("/buyerupdatedetails")
 	public String updateBuyerDetails(@RequestBody BuyerClientDetails buyerClientDetails) {
 		return buyerClientService.updateBuyerDetails(buyerClientDetails);
 	}
 	
-	@DeleteMapping("/cartdelete")
+	@DeleteMapping("/cartdeletepurchase")
 	public String deleteCartPurchASE(@RequestBody BuyerCartProduct buyerCartProduct) {
 		return buyerClientService.cartPurchaseDelete(buyerCartProduct);
 	}

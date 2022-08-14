@@ -17,7 +17,7 @@ public interface BuyerPayProductRepo {
 																	+ "cd.money_balance - lp.product_price  AS currentbalance, "
 																	+ "pd.payment_status  AS ubpaidstatus, "
 																	+ "pd.client_purchase_id AS clientid, "
-																	+ "cd.client_email AS buyeremail, n"
+																	+ "cd.client_email AS buyeremail, "
 																	+ "pd.purchase_id AS puchaseid, "
 																	+ "cd.role AS sellerrole "
 																	+ "FROM tbclientlogin cl  "

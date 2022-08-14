@@ -1,9 +1,6 @@
 package com.client.LazardoClient.Validation;
 
 import com.client.LazardoClient.DAO.ValidationRepo;
-import com.client.LazardoClient.Model.AddBalance;
-import com.client.LazardoClient.Model.BuyerCartProduct;
-import com.client.LazardoClient.Model.TransferBalance;
 import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.ModelException.NotNullException;
 
@@ -18,6 +15,7 @@ public class ClientInputValidation {
 	
 	@Autowired
 	private ValidationRepo validationRepo;
+	
 	
 	public boolean checkEmailFormatSignUp( String email) {
 		validation.emailValidationSignUp(email);
@@ -42,15 +40,7 @@ public class ClientInputValidation {
 		return password;
 	}
 	
-	public Integer checkProductIDBuyer(Integer productID , String email){
-		if(validationRepo.ifProductExistBuyer(productID, email) == false)  throw new InvalidException("Product is unavailable to be deleted");
-		return productID;
-	}
-	
-	public Integer checkProductIDSellerr(Integer productID , String email){
-		if(validationRepo.ifProductExistSeller(productID, email) == false)  throw new InvalidException("Product is unavailable to be deleted Or Product is already purchase by buyer ");
-		return productID;
-	}
+
 
 	public Double checkDouble(Double balance) {
     boolean check =	Double.compare(balance, 0.0) < 0;
@@ -72,6 +62,42 @@ public class ClientInputValidation {
 		if(check.matches("[1-2]")) return role;
 		throw new InvalidException("Role don't exist");
 		 }
-
+	 
+	 public String checkProductName(String productname) {
+		 if(productname.isEmpty())throw new InvalidException("Product name is empty");
+		return productname;
+	 }
+	 
+	 public String checkProductBrand(String productbrand) {
+		 if(productbrand.isEmpty())throw new InvalidException("Product brand is empty");
+		return productbrand;
+	 }
+	 
+	 public String checkProductComment(String productcomment) {
+		 if(productcomment.isEmpty())throw new InvalidException("Product comment is empty");
+		return productcomment;
+	 }
+	 
+		public Integer checkProductIDBuyer(Integer productID , String email){
+			if(validationRepo.ifProductExistBuyer(productID, email) == false)  throw new InvalidException("Product is unavailable to be deleted");
+			return productID;
+		}
+		
+		public void checkProductIDBuyerCartProduct(Integer productID){
+			if(validationRepo.ifProductAvailableCart(productID) == false)  throw new InvalidException("Product is unavailable to be cart");
+		}
+		
+		public Integer checkProductIDSellerr(Integer productID , String email){
+			if(validationRepo.ifProductExistSeller(productID, email) == false)  throw new InvalidException("Product is unavailable to be deleted Or Product is already purchase by buyer ");
+			return productID;
+		}
+		
+		public void checkProductIDUpdateExist(Integer productID , String email) {
+			if(validationRepo.ifProductExistSellerProductUpdate(productID, email) == false) throw new InvalidException("Product is unavailable to update or don't exist");
+		}
+		
+		public void checkBuyerCartProductPaymentUnpaid(String buyeremail, Integer purchaseid) {
+			if(validationRepo.ifBuyerCartProductUnpaidPayment(buyeremail, purchaseid) == false) throw new InvalidException("Product already paid or don't exist");
+		}
 
 }

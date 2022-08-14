@@ -22,11 +22,11 @@ public class SellerClientController  implements InterfaceController{
 	
 	
 	@PostMapping("/sell")
-	public Integer sellProduct(@RequestBody List<SellerProduct> products) {
+	public String sellProduct(@RequestBody List<SellerProduct> products) {
 		return sellerClientService.sellProduct(products);
 		
 	}
-	@PutMapping("/sellerupdate")
+	@PutMapping("/sellerupdatedetail")
 	public String updateSellerDetail(@RequestBody SellerClientDetails sellerClientDetails) {
 		return sellerClientService.updateSellerDetails(sellerClientDetails);
 	}
@@ -34,6 +34,11 @@ public class SellerClientController  implements InterfaceController{
 	@DeleteMapping("/sellerdeleteproduct")
 	public String deleteSellProduct(@RequestBody SellerChangesProduct changesProduct) {
 		return sellerClientService.deleteSellerProduct(changesProduct);
+	}
+	
+	@PutMapping("/sellerupdateproduct")
+	public String updateSellerProduct(@RequestBody SellerProduct sellerProduct) {
+		return sellerClientService.updateSellerProduct(sellerProduct);
 	}
 
 }

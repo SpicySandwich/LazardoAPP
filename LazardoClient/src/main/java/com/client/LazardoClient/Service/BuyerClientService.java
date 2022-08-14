@@ -8,11 +8,11 @@ import com.client.LazardoClient.DAO.BuyerPayProductRepo;
 import com.client.LazardoClient.DAO.BuyerRemoveCart;
 import com.client.LazardoClient.DAO.BuyerSignInRepo;
 import com.client.LazardoClient.DAO.ClientDetailsChanges;
-import com.client.LazardoClient.DAO.ValidationRepo;
 import com.client.LazardoClient.Model.BuyerCartProduct;
 import com.client.LazardoClient.Model.BuyerClientDetails;
 import com.client.LazardoClient.Model.BuyerPayment;
 import com.client.LazardoClient.Model.ClientLogin;
+import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.Validation.CompileValidation;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,22 +45,21 @@ public class BuyerClientService {
 	}
 	
 	//Buyer cart a product
-	public Integer BuyerPurchaseProduct(List<BuyerCartProduct>   cartProduct) {
-		
-	//	 clientLogin.getClientDetails().getCartProduct().forEach(foo -> foo.setClientEmail(clientLogin.getClientDetails().getEmail()));
-	Integer saveOrNot =	buyProductRepo.addProductTOClient(cartProduct);
-		return saveOrNot;
+	public String BuyerPurchaseProduct(List<BuyerCartProduct>   cartProduct) {
+		compileValidation.checkBuyerPurchaseProduct(cartProduct);
+	    buyProductRepo.addProductTOClient(cartProduct);
+		return "Succefully purchase the product";
 		
 	}
 	//Buyer Pay the product
-	public boolean BuyerPayProduct(BuyerPayment payment) {
-		
+	public String BuyerPayProduct(BuyerPayment payment) {
+		compileValidation.checkBuyerPayingProduct(payment);
 		if (payProductRepo.singleProductPaymentBuyer(payment) == true) {
 			payProductRepo.singleProductPaymentToSeller(payment);
 			payProductRepo.insertToHistory(payment);
-			return true;
+			return "Successfully paid the product";
 		}
-		return false;
+		throw new InvalidException("Unable to pay the product");
 	}
 	//Buyer Update Details
 	public String updateBuyerDetails(BuyerClientDetails buyerClientDetails) {

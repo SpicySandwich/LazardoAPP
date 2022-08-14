@@ -6,11 +6,11 @@ import com.client.LazardoClient.DAO.ClientDetailsChanges;
 import com.client.LazardoClient.DAO.SellerDeleteUpdateProductRepo;
 import com.client.LazardoClient.DAO.SellerSellProductRepo;
 import com.client.LazardoClient.DAO.SellerSignInRepo;
-import com.client.LazardoClient.DAO.ValidationRepo;
 import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Model.SellerChangesProduct;
 import com.client.LazardoClient.Model.SellerClientDetails;
 import com.client.LazardoClient.Model.SellerProduct;
+import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.Validation.CompileValidation;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +36,14 @@ public class SellerClientService {
 	
 	//Seller Signin
 	  public ClientLogin siginInClientsSeller(String username, String password) {
-			
 			return sellerShowProduct.sellerSignIn(username,password);
 		}
 	
 	//Seller add product to sell
-	public Integer sellProduct(List<SellerProduct> sellProduct) {
-		Integer saveOrNot = sellerSellProductRepo.sellerClientAddProduct(sellProduct);
-		return saveOrNot;
+	public String sellProduct(List<SellerProduct> sellProduct) {
+		compileValidation.checkSellerAddProduct(sellProduct);
+		 sellerSellProductRepo.sellerClientAddProduct(sellProduct);
+		return "Successfully product created";
 	}
 	
 	//Seller update details
@@ -60,6 +60,14 @@ public class SellerClientService {
 		return "Succefully delete product " + changesProduct.getProductId();
 	}
 	
+	//Seller update product
+	public String updateSellerProduct(SellerProduct sellerProduct) {
+		compileValidation.checkUpdateSellerProduct(sellerProduct);
+		if(sellerDeleteUpdateProductRepo.updateSellerProduct(sellerProduct)== true)
+			return "Succefully updated ";
+		throw new InvalidException("Unable to update the product");
+	
+	}
   
 
 }

@@ -43,7 +43,7 @@ public class MainClientService {
 	
 	 public ClientLogin siginInMainClient(String username, String password) {
 		 
-//		 compileValidation.signInValidation(username, password);
+		 compileValidation.checkClientSignIn(username, password);
 		 
 			 Integer role = validationRepo.checkRole(username, password);
 			 if (role == 1) return buyerSignInRepo.buyerSignIn(username, password);

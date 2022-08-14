@@ -19,6 +19,13 @@ public class ClientRepoValidation {
 			return checkUser;
 		}
 	   
+	   public String usernameValidationSignIn(String username, String password) {
+		String pass = validationRepo.checkPassword(username);
+		
+		   if(validationRepo.ifUsernameExist(username) == true && password.matches(pass) == true) return username;
+		   throw new InvalidException("Password is wrong for username "+ username);
+	   }
+	   
 	   public String passwordValidationSignIn(String user) {
 		   String checkPass =  validationRepo.checkPassword(user);
 		   return checkPass;
@@ -30,10 +37,7 @@ public class ClientRepoValidation {
 			return checkEmail;
 			
 		}
-	   
-//       public boolean productIDValidation(Integer id) {
-//		return validationRepo.ifProductExist(id);
-//	}
+
 	
 	
 	
