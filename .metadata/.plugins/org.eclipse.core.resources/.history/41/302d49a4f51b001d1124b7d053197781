@@ -45,11 +45,11 @@ public interface SellerSignInRepo {
 			 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
 	 
 	 final String TOTAL_PRODUCT_PAID = "SELECT  "
-			 		+ "SUM(cspi.product_price) AS totalPaidBalance "
-			 		+ "FROM tbclientsellerpaidinfo  cspi "
-			 		+ "LEFT JOIN tbclientdetails cd "
-			 		+ "ON cspi.seller_email = cd.client_email "
-			 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
+											 		+ "SUM(cspi.product_price) AS totalPaidBalance "
+											 		+ "FROM tbclientsellerpaidinfo  cspi "
+											 		+ "LEFT JOIN tbclientdetails cd "
+											 		+ "ON cspi.seller_email = cd.client_email "
+											 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
 		
 				@Select(SELECT_LOGIN)
 			    @Results(value = {

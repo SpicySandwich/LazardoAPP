@@ -25,31 +25,31 @@ public interface SellerSignInRepo {
 			+ "ON cd.client_id = cl.client_login_id WHERE cl.client_username = #{username} AND cl.client_password = #{password} AND cd.role = 2;";
 
 	final String SELECT_CLIENT_DETAILS = "SELECT client_id as detailId, client_firstname as firstname, client_lastname as lastname, client_email as email, money_balance as balance, role as role "
-                     + "FROM tbclientdetails WHERE client_id = #{loginId} AND role = 2 ";
-
+	                                                 + "FROM tbclientdetails WHERE client_id = #{loginId} AND role = 2 ";
+	
 	 final String SELECT_CLIENT_PRODUCT = "SELECT product_id as id, product_brand as brand, product_name as name, product_price as price, product_current_date as currentdate, "
-					+ "product_expiration_date as expirationdate, product_comment as comment "
-					+ "FROM tblazardoproduct "
-					+ "WHERE sellerid = #{detailId} ;";
+													+ "product_expiration_date as expirationdate, product_comment as comment "
+													+ "FROM tblazardoproduct "
+													+ "WHERE sellerid = #{detailId} ;";
 	 
 	 final String SELECT_TRANSACTION_HISTORY = "SELECT  "
-			 		+ "cspi.buyer_email_purchase AS buyerEmaill, "
-			 		+ "cspi.buyer_purchase_item AS productName, "
-			 		+ "cspi.product_price AS productPrice, "
-			 		+ "cspi.transferbalance AS balanceTransfer, "
-			 		+ "cspi.seller_email AS sellerEmail, "
-			 		+ "cspi.paid_date AS  datePaid "
-			 		+ "FROM tbclientsellerpaidinfo  cspi "
-			 		+ "LEFT JOIN tbclientdetails cd "
-			 		+ "ON cspi.seller_email = cd.client_email "
-			 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
+											 		+ "cspi.buyer_email_purchase AS buyerEmaill, "
+											 		+ "cspi.buyer_purchase_item AS productName, "
+											 		+ "cspi.product_price AS productPrice, "
+											 		+ "cspi.transferbalance AS balanceTransfer, "
+											 		+ "cspi.seller_email AS sellerEmail, "
+											 		+ "cspi.paid_date AS  datePaid "
+											 		+ "FROM tbclientsellerpaidinfo  cspi "
+											 		+ "LEFT JOIN tbclientdetails cd "
+											 		+ "ON cspi.seller_email = cd.client_email "
+											 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
 	 
 	 final String TOTAL_PRODUCT_PAID = "SELECT  "
-			 		+ "SUM(cspi.product_price) AS totalPaidBalance "
-			 		+ "FROM tbclientsellerpaidinfo  cspi "
-			 		+ "LEFT JOIN tbclientdetails cd "
-			 		+ "ON cspi.seller_email = cd.client_email "
-			 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
+											 		+ "SUM(cspi.product_price) AS totalPaidBalance "
+											 		+ "FROM tbclientsellerpaidinfo  cspi "
+											 		+ "LEFT JOIN tbclientdetails cd "
+											 		+ "ON cspi.seller_email = cd.client_email "
+											 		+ "WHERE seller_email = #{email} AND cd.role = 2;";
 		
 				@Select(SELECT_LOGIN)
 			    @Results(value = {
