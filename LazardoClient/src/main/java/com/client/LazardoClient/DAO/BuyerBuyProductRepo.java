@@ -13,18 +13,16 @@ import org.apache.ibatis.annotations.Param;
 public interface BuyerBuyProductRepo {
 	
 	final String CART_PRODUCT =   "<script>"
-			                                               +  "INSERT INTO  tbpurchasedetails (client_purchase_id, client_product_purchase_id) "
-			                                               +  "VALUES" 
-															+   "<foreach item='parameter_item' collection='cartProduct' open='' separator=',' close=''>" 
-															+  "((SELECT client_id FROM tbclientdetails WHERE client_email = #{parameter_item.clientEmail}), "
-															+   "#{parameter_item.cartProductID})" 
-															+   "</foreach>"
-															+  "</script>";
+               +  "INSERT INTO  tbpurchasedetails (client_purchase_id, client_product_purchase_id) "
+               +  "VALUES" 
+				+   "<foreach item='parameter_item' collection='cartProduct' open='' separator=',' close=''>" 
+				+  "((SELECT client_id FROM tbclientdetails WHERE client_email = #{parameter_item.clientEmail}), "
+				+   "#{parameter_item.cartProductID})" 
+				+   "</foreach>"
+				+  "</script>";
 	
 	  @Insert({CART_PRODUCT})
 public Integer addProductTOClient(@Param("cartProduct") List<BuyerCartProduct>   cartProduct);
 
-	
-	
 
 }
