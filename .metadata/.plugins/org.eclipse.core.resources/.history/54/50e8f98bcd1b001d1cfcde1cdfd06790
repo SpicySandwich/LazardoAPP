@@ -1,7 +1,0 @@
-package com.client.LazardoClient.Validation;
-
-public class LocalDateTimeValidation {
-	
-	
-
-}

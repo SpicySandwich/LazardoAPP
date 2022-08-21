@@ -1,5 +1,7 @@
 package com.client.LazardoClient.Validation;
 
+import java.util.Optional;
+
 import com.client.LazardoClient.DAO.ValidationRepo;
 import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.ModelException.NotNullException;
@@ -18,25 +20,53 @@ public class ClientInputValidation {
 	
 	
 	public boolean checkEmailFormatSignUp( String email) {
-		validation.emailValidationSignUp(email);
-		if(email.trim().isEmpty()) throw new NotNullException("Email is empty or contain space");
-		if(!email.matches("^(.+)@(.+)$")) throw new NotNullException("Email format is invalid");
+		 validation.emailValidationSignUp(email);
+		 
+		Optional<String> emailOptional = Optional.ofNullable(email);
+				
+		emailOptional
+		.filter(word -> word.trim().isEmpty())
+		.map(word -> {
+			 throw new NotNullException("Email is empty or contain space");
+		});
+		emailOptional
+		.filter(word -> word.matches("^(.+)@(.+)$"))
+		.orElseThrow(() -> new NotNullException("Email invalid format "));
+				
 		return false;
 	}
 	
 	public String checkUsernameNotNullSignUp(String username) {
-		if(username.trim().isEmpty()) throw new NotNullException("Username is empty or contain space");
+		
+		Optional.ofNullable(username)
+		.filter(user -> user.trim().isEmpty())
+		.map(user -> {
+			throw new NotNullException("Username is empty or contain space");
+		});
+		
 		return username;
 	}
 	
 	public String checkPasswordFormatSignUp(String password) {
-		if(password.trim().isEmpty())throw new NotNullException("Password is empty or contain space");
-        if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{7,15}$"))
-			throw new InvalidException("Password must contain at "
+		
+		Optional<String> passOptional = Optional.ofNullable(password);
+		
+		passOptional
+		.filter(pass -> pass.trim().isEmpty())
+		.map(pass -> {
+			throw new NotNullException("Password is empty or contain space");
+		});
+		
+		passOptional
+		.filter(pass -> pass.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{7,15}$"))
+		.orElseThrow(() -> 
+			new InvalidException("Password must contain at "
 					+ "least one digit [0-9],one lowercase Latin character [a-z],"
 					+ "least one uppercase Latin character [A-Z],"
 					+ "least least one special character like ! @ # & ( ),"
-					+ "length of at least 7 characters and a maximum of 15 characters");
+					+ "length of at least 7 characters and a maximum of 15 characters"));
+	
+	
 		return password;
 	}
 	
@@ -44,37 +74,71 @@ public class ClientInputValidation {
 
 	public Double checkDouble(Double balance) {
     boolean check =	Double.compare(balance, 0.0) < 0;
-    if(check == true)throw new InvalidException("Balance can't be negative value");
+    
+    Optional.of(check)
+    .filter(Boolean::booleanValue)
+    .map(check2 -> {
+    	throw new InvalidException("Balance can't be negative value");
+    });
+
 		return  balance;
 	}
 
 	 public String checkEmailTrue(String email) {
-		if (validationRepo.ifEmailExist(email) == true) return email;
-			throw new InvalidException("Email don't exist");
+		 
+		 boolean check =	 validationRepo.ifEmailExist(email);
+		 
+		 Optional.of(check)
+		 .filter(Boolean::booleanValue)
+		 .map(check2 -> {
+			 return email;
+		 });
+		 throw new InvalidException("Email don't exist");
 	 }
+	 
 	 public String checkEmailFalse(String email) {
-			if (validationRepo.ifEmailExist(email) == true) 	throw new InvalidException("Email already exist");
+		 boolean check =	 validationRepo.ifEmailExist(email);
+		 
+		 Optional.of(check)
+		 .filter(Boolean::booleanValue)
+		 .map(check2 -> {
+			 throw new InvalidException("Email already exist");
+		 });
 			return email;
 		 }
 	 
 	 public Integer checkRole(Integer role) {
 		String check =	String.valueOf(role);
-		if(check.matches("[1-2]")) return role;
-		throw new InvalidException("Role don't exist");
+		
+		Optional.ofNullable(check)
+		.filter(word -> word.matches("[1-2]"))
+		.orElseThrow(() -> new InvalidException("Role don't exist"));
+		
+          return role;
+
 		 }
 	 
 	 public String checkProductName(String productname) {
-		 if(productname.isEmpty())throw new InvalidException("Product name is empty");
+		 
+		 Optional.ofNullable(productname)
+		 .orElseThrow(() -> new InvalidException("Product name is empty"));
+
 		return productname;
 	 }
 	 
 	 public String checkProductBrand(String productbrand) {
-		 if(productbrand.isEmpty())throw new InvalidException("Product brand is empty");
+		 
+		 Optional.ofNullable(productbrand)
+		 .orElseThrow(() -> new InvalidException("Product brand is empty"));
+	
 		return productbrand;
 	 }
 	 
 	 public String checkProductComment(String productcomment) {
-		 if(productcomment.isEmpty())throw new InvalidException("Product comment is empty");
+		 
+		 Optional.ofNullable(productcomment)
+		 .orElseThrow(() -> new InvalidException("Product comment is empty"));
+
 		return productcomment;
 	 }
 	 

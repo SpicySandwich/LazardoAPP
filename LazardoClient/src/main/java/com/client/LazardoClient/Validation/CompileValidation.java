@@ -1,6 +1,7 @@
 package com.client.LazardoClient.Validation;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.client.LazardoClient.Model.AddBalance;
 import com.client.LazardoClient.Model.BuyerCartProduct;
@@ -46,11 +47,17 @@ public class CompileValidation {
 	
 	  public ClientLogin signUpValidation(ClientLogin clientLogin) {
 		  
-		  if(clientLogin.getUsername().equals(clientInputValidation.checkUsernameNotNullSignUp(clientLogin.getReTypeUsername())) == false)
-	             throw new InvalidException("Username do not match");
-		  clientRepoValidation.usernameValidationSignUp(clientLogin.getReTypeUsername());
-		  if (clientLogin.getPassword().equals(clientInputValidation.checkPasswordFormatSignUp(clientLogin.getReTypePassword())) == false)
-			  throw new InvalidException("Password do not match");
+		  boolean checkUser = clientLogin.getUsername().equals(clientInputValidation.checkUsernameNotNullSignUp(clientLogin.getReTypeUsername()));
+		 boolean checkPass = clientLogin.getPassword().equals(clientInputValidation.checkPasswordFormatSignUp(clientLogin.getReTypePassword()));
+		 
+		 Optional.of(checkUser)
+		 .filter(Boolean::booleanValue)
+		 .orElseThrow(() -> new InvalidException("Username do not match"));
+		 
+		 Optional.of(checkPass)
+		 .filter(Boolean::booleanValue)
+		 .orElseThrow(() -> new InvalidException("Password do not match"));
+
 			  return clientLogin;
 				}
 	  

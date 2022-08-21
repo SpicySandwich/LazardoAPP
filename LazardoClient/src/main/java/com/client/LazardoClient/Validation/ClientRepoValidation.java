@@ -1,5 +1,7 @@
 package com.client.LazardoClient.Validation;
 
+import java.util.Optional;
+
 import com.client.LazardoClient.DAO.ValidationRepo;
 import com.client.LazardoClient.ModelException.AlreadyExistException;
 import com.client.LazardoClient.ModelException.InvalidException;
@@ -24,6 +26,8 @@ public class ClientRepoValidation {
 		
 		   if(validationRepo.ifUsernameExist(username) == true && password.matches(pass) == true) return username;
 		   throw new InvalidException("Password is wrong for username "+ username);
+		   
+		   
 	   }
 	   
 	   public String passwordValidationSignIn(String user) {
@@ -31,11 +35,15 @@ public class ClientRepoValidation {
 		   return checkPass;
 	   }
 	   
-	   public boolean emailValidationSignUp(String email) {
-			boolean checkEmail =  validationRepo.ifEmailExist(email);
-			if(checkEmail == true) throw new AlreadyExistException("Email "+ email + " already exist. Kindly change");
-			return checkEmail;
-			
+	   public void emailValidationSignUp(String email) {
+		   
+		   boolean checkEmail =  validationRepo.ifEmailExist(email);
+		   
+		   Optional.of(checkEmail)
+		   .filter(Boolean::booleanValue)
+		   .map(check ->{
+			   throw new AlreadyExistException("Email "+ email + " already exist. Kindly change");
+		   });
 		}
 
 	

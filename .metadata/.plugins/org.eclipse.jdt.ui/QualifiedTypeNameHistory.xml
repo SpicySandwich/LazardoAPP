@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Service.BothFunctionClientService"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Service.BuyerClientService"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Service.MainClientService"/>
-    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.ModelException.AlreadyExistException"/>
     <fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.ClientInputValidation"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Validation.ClientRepoValidation"/>
@@ -60,4 +55,9 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerProduct"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.SellerTotalProductBalance"/>
     <fullyQualifiedTypeName name="com.client.LazardoClient.Model.TransferBalance"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
 </qualifiedTypeNameHistroy>
