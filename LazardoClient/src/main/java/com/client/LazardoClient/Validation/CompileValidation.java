@@ -63,21 +63,29 @@ public class CompileValidation {
 	  
 		public BuyerClientDetails checkBuyerDetails(BuyerClientDetails buyerClientDetails) {
 			
+		  Optional.ofNullable(buyerClientDetails)
+		  .filter(buyer -> buyer.getFirstname().isEmpty() || 
+				     buyer.getLastname().isEmpty()|| 
+				     clientInputValidation.checkEmailFormatSignUp(buyer.getEmail()))
+		  .map(exp ->{
+			  throw new NotNullException("Please fill up all the field");	
+		  });
 			
-			if (buyerClientDetails.getFirstname().isEmpty() ||
-				buyerClientDetails.getLastname().isEmpty() || 
-				clientInputValidation.checkEmailFormatSignUp(buyerClientDetails.getEmail())
-					) throw new NotNullException("Please fill up all the field");	
 			return buyerClientDetails;
 		
 			}
 	
 		public SellerClientDetails checkSellerDetails(SellerClientDetails sellerClientDetails) {
 			
-			if (sellerClientDetails.getFirstname().isEmpty() ||
-				sellerClientDetails.getLastname().isEmpty() || 
-				clientInputValidation.checkEmailFormatSignUp(sellerClientDetails.getEmail())
-					)throw new NotNullException("Please fill up all the field");	
+			Optional.ofNullable(sellerClientDetails)
+			.filter(seller -> 
+				seller.getFirstname().isEmpty() ||
+				seller.getLastname().isEmpty() || 
+				clientInputValidation.checkEmailFormatSignUp(seller.getEmail()))
+			.map(exp ->{
+				throw new NotNullException("Please fill up all the field");	
+			});
+			
 			return sellerClientDetails;
 				
 			}

@@ -1,0 +1,129 @@
+package com.client.LazardoClient.Service;
+
+import java.util.Optional;
+
+import com.client.LazardoClient.DAO.BuyerSignInRepo;
+import com.client.LazardoClient.DAO.ChangeRole;
+import com.client.LazardoClient.DAO.ClientBalance;
+import com.client.LazardoClient.DAO.SellerSignInRepo;
+import com.client.LazardoClient.DAO.SignUpClientRepo;
+import com.client.LazardoClient.DAO.ValidationRepo;
+import com.client.LazardoClient.Model.AddBalance;
+import com.client.LazardoClient.Model.ChangeClientRole;
+import com.client.LazardoClient.Model.ClientLogin;
+import com.client.LazardoClient.Model.TransferBalance;
+import com.client.LazardoClient.ModelException.InvalidException;
+import com.client.LazardoClient.Validation.CompileValidation;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MainClientService {
+	
+	@Autowired
+	private SignUpClientRepo signUpClientRepo;
+	
+	@Autowired
+	private SellerSignInRepo sellerShowProduct;
+	
+	@Autowired
+	private BuyerSignInRepo buyerSignInRepo;
+	
+	@Autowired
+	private ValidationRepo validationRepo;
+	
+	@Autowired
+	private CompileValidation compileValidation;
+	
+	@Autowired
+	private ClientBalance clientBalance;
+	
+	@Autowired
+	private ChangeRole changeRole;
+	
+	
+	 public ClientLogin siginInMainClient(String username, String password) {
+		 
+		 compileValidation.checkClientSignIn(username, password);
+		 
+			 Integer role = validationRepo.checkRole(username, password);
+			 if (role == 1) return buyerSignInRepo.buyerSignIn(username, password);
+			 else if (role == 2) return sellerShowProduct.sellerSignIn(username,password);
+			 
+        throw new InvalidException("Invalid username and password");
+		}
+
+	//Sign up then direct to SignIn depend on role buyer or seller
+	public ClientLogin signUpClient(ClientLogin clientLogin) {
+		
+		compileValidation.signUpValidation(clientLogin);
+	
+		if(!(clientLogin.getSellerDetails() == null)) {
+			compileValidation.checkSellerDetails(clientLogin.getSellerDetails());
+			clientLogin.getSellerDetails().setLoginUsername(clientLogin.getUsername());
+			return signUpSeller(clientLogin);
+		}else if(!(clientLogin.getBuyerDetails() == null)) {
+			compileValidation.checkBuyerDetails(clientLogin.getBuyerDetails());
+			 clientLogin.getBuyerDetails().setLoginUsername(clientLogin.getUsername());
+			 return signUpBuyer(clientLogin);
+		}
+		throw new InvalidException("Invalid sign up");
+	}
+	
+			public ClientLogin signUpSeller(ClientLogin clientLogin) {
+				
+//				Optional.ofNullable(clientLogin)
+//				.filter(client -> signUpClientRepo.signUpClient(client) == true && 
+//						 signUpClientRepo.insertSellerDetails(client.getSellerDetails()) == true)
+//				.map(client ->{
+//					 return sellerShowProduct.sellerSignIn(client.getUsername(),client.getPassword());
+//				});
+				
+				 if(signUpClientRepo.signUpClient(clientLogin) == true && 
+						 signUpClientRepo.insertSellerDetails(clientLogin.getSellerDetails()) == true  ) 
+					 return sellerShowProduct.sellerSignIn(clientLogin.getUsername(), clientLogin.getPassword());
+				 
+				 throw new InvalidException("Invalid sign up for buyer");
+			}
+	
+		public ClientLogin signUpBuyer(ClientLogin clientLogin) {
+			
+			 if(signUpClientRepo.signUpClient(clientLogin) == true && 
+					 signUpClientRepo.insertBuyerDetails(clientLogin.getBuyerDetails()) == true )
+				 return buyerSignInRepo.buyerSignIn(clientLogin.getUsername(), clientLogin.getPassword()); 
+			 
+			 throw new InvalidException("Invalid sign up for seller");
+				
+			}
+		
+		//add balance
+		public String addBalance(AddBalance addBalance) {
+			compileValidation.checkaddedBalance(addBalance);
+		  if (clientBalance.addBalance(addBalance) == true) 
+			  return	 "Succefully added " + addBalance.getBalance() + " to " + addBalance.getClientEmail();
+		  else  throw new InvalidException("Unable to add balance to " + addBalance.getClientEmail());
+		
+		}
+		
+		//transfer balance
+		public String transferBalance (TransferBalance transferBalance) {
+			compileValidation.checkTransferBalance(transferBalance);
+			if(clientBalance.transferBalance1(transferBalance) == true && 
+					clientBalance.transferBalance2(transferBalance.getBalanceTransfer(),transferBalance.getReceiverEmail()) ==true) {
+				return "Succefully transferred " + transferBalance.getBalanceTransfer() + " to " + transferBalance.getReceiverEmail();
+			}
+			else throw new InvalidException("Unable to transfer balance to " +  transferBalance.getReceiverEmail() + " due to insufficient balance");
+			
+		}
+		
+		//change role
+		public String changeClientRole(ChangeClientRole changeClientRole) {
+			compileValidation.checkRole(changeClientRole);
+			 changeRole.changeClientRole(changeClientRole);
+			 return "Succefully change role for " + changeClientRole.getClientEmail() ;
+		}
+		
+		
+
+}

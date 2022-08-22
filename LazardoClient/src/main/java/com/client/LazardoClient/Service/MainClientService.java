@@ -1,5 +1,7 @@
 package com.client.LazardoClient.Service;
 
+import java.util.Optional;
+
 import com.client.LazardoClient.DAO.BuyerSignInRepo;
 import com.client.LazardoClient.DAO.ChangeRole;
 import com.client.LazardoClient.DAO.ClientBalance;
@@ -70,11 +72,19 @@ public class MainClientService {
 	}
 	
 			public ClientLogin signUpSeller(ClientLogin clientLogin) {
-				 if(signUpClientRepo.signUpClient(clientLogin) == true && 
-						 signUpClientRepo.insertSellerDetails(clientLogin.getSellerDetails()) == true  ) 
-					 return sellerShowProduct.sellerSignIn(clientLogin.getUsername(), clientLogin.getPassword());
+				
+				return Optional.ofNullable(clientLogin)
+				.filter(client -> signUpClientRepo.signUpClient(client) == true && 
+						 signUpClientRepo.insertSellerDetails(client.getSellerDetails()) == true)
+				.map(client2 ->{
+					 return sellerShowProduct.sellerSignIn(client2.getUsername(),client2.getPassword());
+				}).orElseThrow(() -> new InvalidException("Invalid sign up for buyer"));
+				
+//				 if(signUpClientRepo.signUpClient(clientLogin) == true && 
+//						 signUpClientRepo.insertSellerDetails(clientLogin.getSellerDetails()) == true  ) 
+//					 return sellerShowProduct.sellerSignIn(clientLogin.getUsername(), clientLogin.getPassword());
 				 
-				 throw new InvalidException("Invalid sign up for buyer");
+//				 throw new InvalidException("Invalid sign up for buyer");
 			}
 	
 		public ClientLogin signUpBuyer(ClientLogin clientLogin) {

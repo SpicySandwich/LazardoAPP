@@ -22,26 +22,22 @@ public class ClientInputValidation {
 	public boolean checkEmailFormatSignUp( String email) {
 		 validation.emailValidationSignUp(email);
 		 
-		Optional<String> emailOptional = Optional.ofNullable(email);
-				
-		emailOptional
-		.filter(word -> word.trim().isEmpty())
-		.map(word -> {
-			 throw new NotNullException("Email is empty or contain space");
-		});
-		emailOptional
-		.filter(word -> word.matches("^(.+)@(.+)$"))
-		.orElseThrow(() -> new NotNullException("Email invalid format "));
-				
+	  Optional.ofNullable(email)
+		.filter(word -> word.matches("^(.+)@(.+)$") && !word.trim().isEmpty())
+		.orElseThrow(()-> new NotNullException("Email invalid format or empty"));
+		
 		return false;
 	}
 	
 	public String checkUsernameNotNullSignUp(String username) {
 		
 		Optional.ofNullable(username)
+		.orElseThrow(() -> new  NotNullException("Username is null"));
+		
+		Optional.ofNullable(username)
 		.filter(user -> user.trim().isEmpty())
 		.map(user -> {
-			throw new NotNullException("Username is empty or contain space");
+			throw new NotNullException("Username is empty");
 		});
 		
 		return username;
@@ -50,6 +46,9 @@ public class ClientInputValidation {
 	public String checkPasswordFormatSignUp(String password) {
 		
 		Optional<String> passOptional = Optional.ofNullable(password);
+		
+		passOptional
+		.orElseThrow(() -> new NotNullException("Password is null"));
 		
 		passOptional
 		.filter(pass -> pass.trim().isEmpty())
@@ -86,6 +85,9 @@ public class ClientInputValidation {
 
 	 public String checkEmailTrue(String email) {
 		 
+		 Optional.ofNullable(email)
+		 .orElseThrow(() -> new NotNullException("Email is null"));
+		 
 		 boolean check =	 validationRepo.ifEmailExist(email);
 		 
 		 Optional.of(check)
@@ -97,6 +99,10 @@ public class ClientInputValidation {
 	 }
 	 
 	 public String checkEmailFalse(String email) {
+		 
+		 Optional.ofNullable(email)
+		 .orElseThrow(() -> new NotNullException("Email is null"));
+		 
 		 boolean check =	 validationRepo.ifEmailExist(email);
 		 
 		 Optional.of(check)
@@ -143,25 +149,40 @@ public class ClientInputValidation {
 	 }
 	 
 		public Integer checkProductIDBuyer(Integer productID , String email){
-			if(validationRepo.ifProductExistBuyer(productID, email) == false)  throw new InvalidException("Product is unavailable to be deleted");
+			
+			Optional.of(validationRepo.ifProductExistBuyer(productID, email))
+			.filter(Boolean::booleanValue)
+			.orElseThrow(() -> new InvalidException("Product is unavailable to be deleted"));
 			return productID;
 		}
 		
 		public void checkProductIDBuyerCartProduct(Integer productID){
-			if(validationRepo.ifProductAvailableCart(productID) == false)  throw new InvalidException("Product is unavailable to be cart");
+			
+			Optional.of(validationRepo.ifProductAvailableCart(productID))
+			.filter(Boolean::booleanValue)
+			.orElseThrow(() ->  new InvalidException("Product is unavailable to be cart"));
 		}
 		
 		public Integer checkProductIDSellerr(Integer productID , String email){
-			if(validationRepo.ifProductExistSeller(productID, email) == false)  throw new InvalidException("Product is unavailable to be deleted Or Product is already purchase by buyer ");
+			
+			Optional.of(validationRepo.ifProductExistSeller(productID, email))
+			.filter(Boolean::booleanValue)
+			.orElseThrow(() ->  new InvalidException("Product is unavailable to be deleted Or Product is already purchase by buyer "));
 			return productID;
 		}
 		
 		public void checkProductIDUpdateExist(Integer productID , String email) {
-			if(validationRepo.ifProductExistSellerProductUpdate(productID, email) == false) throw new InvalidException("Product is unavailable to update or don't exist");
+			
+			Optional.of(validationRepo.ifProductExistSellerProductUpdate(productID, email))
+			.filter(Boolean::booleanValue)
+			.orElseThrow(() ->  new InvalidException("Product is unavailable to update or don't exist"));
 		}
 		
 		public void checkBuyerCartProductPaymentUnpaid(String buyeremail, Integer purchaseid) {
-			if(validationRepo.ifBuyerCartProductUnpaidPayment(buyeremail, purchaseid) == false) throw new InvalidException("Product already paid or don't exist");
-		}
+			
+			Optional.of(validationRepo.ifBuyerCartProductUnpaidPayment(buyeremail, purchaseid))
+			.filter(Boolean::booleanValue)
+			.orElseThrow(() -> new InvalidException("Product already paid or don't exist"));
+			}
 
 }
