@@ -17,18 +17,25 @@ public class ClientRepoValidation {
 
 	   public boolean usernameValidationSignUp(String username) {
 		   boolean checkUser =  validationRepo.ifUsernameExist(username);
-		   if(checkUser  == true) throw new AlreadyExistException("Username " + username + " already exist. Kindly create new one");
+		   
+		   Optional.of(checkUser)
+		   .filter(Boolean::booleanValue)
+		   .map(check ->{
+			   throw new AlreadyExistException("Username " + username + " already exist. Kindly create new one");
+		   });
 			return checkUser;
 		}
 	   
 	   public String usernameValidationSignIn(String username, String password) {
-		String pass = validationRepo.checkPassword(username);
-		
-		   if(validationRepo.ifUsernameExist(username) == true && password.matches(pass) == true) return username;
-		   throw new InvalidException("Password is wrong for username "+ username);
-		   
-		   
-	   }
+			String pass = validationRepo.checkPassword(username);
+			
+		return Optional.ofNullable(username)
+			.filter(user -> validationRepo.ifUsernameExist(user) == true && password.matches(pass) == true)
+			.map(user -> {
+				return username;
+			}).orElseThrow(() ->  new InvalidException("Password is wrong for username "+ username));
+			  
+		   }
 	   
 	   public String passwordValidationSignIn(String user) {
 		   String checkPass =  validationRepo.checkPassword(user);

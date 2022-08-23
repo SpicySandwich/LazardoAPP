@@ -46,18 +46,26 @@ public class CompileValidation {
 		}
 	
 	  public ClientLogin signUpValidation(ClientLogin clientLogin) {
+		
+		  clientInputValidation.checkPasswordNotNull(clientLogin.getPassword(),clientLogin.getReTypePassword());
 		  
-		  boolean checkUser = clientLogin.getUsername().equals(clientInputValidation.checkUsernameNotNullSignUp(clientLogin.getReTypeUsername()));
-		 boolean checkPass = clientLogin.getPassword().equals(clientInputValidation.checkPasswordFormatSignUp(clientLogin.getReTypePassword()));
+		  boolean checkUser = clientLogin.getUsername()
+				  .equals(clientInputValidation.checkUsernameNotNullSignUp(clientLogin.getReTypeUsername()));
+		 boolean checkPass = clientLogin.getPassword()
+				 .equals(clientLogin.getReTypePassword());
 		 
 		 Optional.of(checkUser)
 		 .filter(Boolean::booleanValue)
 		 .orElseThrow(() -> new InvalidException("Username do not match"));
 		 
+		 clientRepoValidation.usernameValidationSignUp(clientLogin.getUsername());
+		 
 		 Optional.of(checkPass)
 		 .filter(Boolean::booleanValue)
 		 .orElseThrow(() -> new InvalidException("Password do not match"));
-
+		 
+		  clientInputValidation.checkPasswordFormatSignUp(clientLogin.getPassword());
+		 
 			  return clientLogin;
 				}
 	  

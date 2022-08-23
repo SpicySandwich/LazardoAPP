@@ -48,6 +48,7 @@ public class MainClientService {
 		 compileValidation.checkClientSignIn(username, password);
 		 
 			 Integer role = validationRepo.checkRole(username, password);
+	
 			 if (role == 1) return buyerSignInRepo.buyerSignIn(username, password);
 			 else if (role == 2) return sellerShowProduct.sellerSignIn(username,password);
 			 
@@ -58,6 +59,22 @@ public class MainClientService {
 	public ClientLogin signUpClient(ClientLogin clientLogin) {
 		
 		compileValidation.signUpValidation(clientLogin);
+		
+//		Optional.ofNullable(clientLogin.getSellerDetails())
+//		.ifPresent(seller -> {
+//			compileValidation.checkSellerDetails(clientLogin.getSellerDetails());
+//			clientLogin.getSellerDetails().setLoginUsername(clientLogin.getUsername());
+//		 	signUpSeller(clientLogin);
+//		 	return;
+//		});
+//		
+//		Optional.ofNullable(clientLogin.getBuyerDetails())
+//		.ifPresent(buyer ->{
+//			compileValidation.checkBuyerDetails(clientLogin.getBuyerDetails());
+//			 clientLogin.getBuyerDetails().setLoginUsername(clientLogin.getUsername());
+//			 signUpBuyer(clientLogin);
+//			 return;
+//		});
 	
 		if(!(clientLogin.getSellerDetails() == null)) {
 			compileValidation.checkSellerDetails(clientLogin.getSellerDetails());
@@ -73,47 +90,48 @@ public class MainClientService {
 	
 			public ClientLogin signUpSeller(ClientLogin clientLogin) {
 				
-				return Optional.ofNullable(clientLogin)
+				 return Optional.ofNullable(clientLogin)
 				.filter(client -> signUpClientRepo.signUpClient(client) == true && 
 						 signUpClientRepo.insertSellerDetails(client.getSellerDetails()) == true)
-				.map(client2 ->{
-					 return sellerShowProduct.sellerSignIn(client2.getUsername(),client2.getPassword());
+				.map(client ->{
+					 return sellerShowProduct.sellerSignIn(clientLogin.getUsername(),clientLogin.getPassword());
 				}).orElseThrow(() -> new InvalidException("Invalid sign up for buyer"));
-				
-//				 if(signUpClientRepo.signUpClient(clientLogin) == true && 
-//						 signUpClientRepo.insertSellerDetails(clientLogin.getSellerDetails()) == true  ) 
-//					 return sellerShowProduct.sellerSignIn(clientLogin.getUsername(), clientLogin.getPassword());
-				 
-//				 throw new InvalidException("Invalid sign up for buyer");
 			}
 	
 		public ClientLogin signUpBuyer(ClientLogin clientLogin) {
 			
-			 if(signUpClientRepo.signUpClient(clientLogin) == true && 
-					 signUpClientRepo.insertBuyerDetails(clientLogin.getBuyerDetails()) == true )
-				 return buyerSignInRepo.buyerSignIn(clientLogin.getUsername(), clientLogin.getPassword()); 
-			 
-			 throw new InvalidException("Invalid sign up for seller");
-				
+		return	Optional.ofNullable(clientLogin)
+			.filter(client -> signUpClientRepo.signUpClient(clientLogin) == true &&  
+			signUpClientRepo.insertBuyerDetails(clientLogin.getBuyerDetails()) == true)
+			.map(client -> {
+				return buyerSignInRepo.buyerSignIn(clientLogin.getUsername(), clientLogin.getPassword()); 
+			}).orElseThrow(() -> new InvalidException("Invalid sign up for seller"));
 			}
 		
 		//add balance
 		public String addBalance(AddBalance addBalance) {
+			
 			compileValidation.checkaddedBalance(addBalance);
-		  if (clientBalance.addBalance(addBalance) == true) 
-			  return	 "Succefully added " + addBalance.getBalance() + " to " + addBalance.getClientEmail();
-		  else  throw new InvalidException("Unable to add balance to " + addBalance.getClientEmail());
-		
+			
+			return Optional.ofNullable(clientBalance.addBalance(addBalance))
+			.filter(Boolean::booleanValue)
+			.map(addbal ->{
+				  return	 "Succefully added " + addBalance.getBalance() + " to " + addBalance.getClientEmail();
+			}).orElseThrow(() ->  new InvalidException("Unable to add balance to " + addBalance.getClientEmail()));
+			
 		}
 		
 		//transfer balance
 		public String transferBalance (TransferBalance transferBalance) {
+			
 			compileValidation.checkTransferBalance(transferBalance);
-			if(clientBalance.transferBalance1(transferBalance) == true && 
-					clientBalance.transferBalance2(transferBalance.getBalanceTransfer(),transferBalance.getReceiverEmail()) ==true) {
+			
+		    return Optional.ofNullable(transferBalance)
+			.filter(trans -> clientBalance.transferBalance1(trans) == true && 
+					clientBalance.transferBalance2(trans.getBalanceTransfer(),trans.getReceiverEmail()) ==true)
+			.map(trans -> {
 				return "Succefully transferred " + transferBalance.getBalanceTransfer() + " to " + transferBalance.getReceiverEmail();
-			}
-			else throw new InvalidException("Unable to transfer balance to " +  transferBalance.getReceiverEmail() + " due to insufficient balance");
+				}).orElseThrow(() -> new InvalidException("Unable to transfer balance to " +  transferBalance.getReceiverEmail() + " due to insufficient balance"));
 			
 		}
 		
