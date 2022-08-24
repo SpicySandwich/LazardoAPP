@@ -56,35 +56,29 @@ public class MainClientService {
 		}
 
 	//Sign up then direct to SignIn depend on role buyer or seller
+		//-----------------------------------------------------------------------
 	public ClientLogin signUpClient(ClientLogin clientLogin) {
 		
 		compileValidation.signUpValidation(clientLogin);
 		
-//		Optional.ofNullable(clientLogin.getSellerDetails())
-//		.ifPresent(seller -> {
-//			compileValidation.checkSellerDetails(clientLogin.getSellerDetails());
-//			clientLogin.getSellerDetails().setLoginUsername(clientLogin.getUsername());
-//		 	signUpSeller(clientLogin);
-//		 	return;
-//		});
-//		
-//		Optional.ofNullable(clientLogin.getBuyerDetails())
-//		.ifPresent(buyer ->{
-//			compileValidation.checkBuyerDetails(clientLogin.getBuyerDetails());
-//			 clientLogin.getBuyerDetails().setLoginUsername(clientLogin.getUsername());
-//			 signUpBuyer(clientLogin);
-//			 return;
-//		});
+		clientLogin = (!(clientLogin.getSellerDetails() == null)) ? signUpClientSeller(clientLogin) 
+				             : (!(clientLogin.getBuyerDetails() == null)) ? signUpClientBuyer(clientLogin)
+				                		: signUpInvalid(clientLogin);
+		return clientLogin;
+	}
 	
-		if(!(clientLogin.getSellerDetails() == null)) {
-			compileValidation.checkSellerDetails(clientLogin.getSellerDetails());
-			clientLogin.getSellerDetails().setLoginUsername(clientLogin.getUsername());
-			return signUpSeller(clientLogin);
-		}else if(!(clientLogin.getBuyerDetails() == null)) {
-			compileValidation.checkBuyerDetails(clientLogin.getBuyerDetails());
-			 clientLogin.getBuyerDetails().setLoginUsername(clientLogin.getUsername());
-			 return signUpBuyer(clientLogin);
-		}
+	public ClientLogin signUpClientSeller(ClientLogin clientLogin) {
+		compileValidation.checkSellerDetails(clientLogin.getSellerDetails());
+		clientLogin.getSellerDetails().setLoginUsername(clientLogin.getUsername());
+		return signUpSeller(clientLogin);
+	}
+	public ClientLogin signUpClientBuyer(ClientLogin clientLogin) {
+		compileValidation.checkBuyerDetails(clientLogin.getBuyerDetails());
+		 clientLogin.getBuyerDetails().setLoginUsername(clientLogin.getUsername());
+		 return signUpBuyer(clientLogin);
+	}
+	
+	public ClientLogin signUpInvalid(ClientLogin clientLogin) {
 		throw new InvalidException("Invalid sign up");
 	}
 	
@@ -107,6 +101,8 @@ public class MainClientService {
 				return buyerSignInRepo.buyerSignIn(clientLogin.getUsername(), clientLogin.getPassword()); 
 			}).orElseThrow(() -> new InvalidException("Invalid sign up for seller"));
 			}
+		//SignUp EndCode
+		//-----------------------------------------------------------------------
 		
 		//add balance
 		public String addBalance(AddBalance addBalance) {

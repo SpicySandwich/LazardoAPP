@@ -12,7 +12,6 @@ import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Model.SellerClientDetails;
 import com.client.LazardoClient.Model.SellerProduct;
 import com.client.LazardoClient.Model.TransferBalance;
-import com.client.LazardoClient.ModelException.InvalidException;
 import com.client.LazardoClient.ModelException.NotNullException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,25 +46,9 @@ public class CompileValidation {
 	
 	  public ClientLogin signUpValidation(ClientLogin clientLogin) {
 		
-		  clientInputValidation.checkPasswordNotNull(clientLogin.getPassword(),clientLogin.getReTypePassword());
-		  
-		  boolean checkUser = clientLogin.getUsername()
-				  .equals(clientInputValidation.checkUsernameNotNullSignUp(clientLogin.getReTypeUsername()));
-		 boolean checkPass = clientLogin.getPassword()
-				 .equals(clientLogin.getReTypePassword());
-		 
-		 Optional.of(checkUser)
-		 .filter(Boolean::booleanValue)
-		 .orElseThrow(() -> new InvalidException("Username do not match"));
-		 
-		 clientRepoValidation.usernameValidationSignUp(clientLogin.getUsername());
-		 
-		 Optional.of(checkPass)
-		 .filter(Boolean::booleanValue)
-		 .orElseThrow(() -> new InvalidException("Password do not match"));
-		 
-		  clientInputValidation.checkPasswordFormatSignUp(clientLogin.getPassword());
-		 
+		  clientInputValidation.checkPasswordNotNullSignUp(clientLogin.getPassword(),clientLogin.getReTypePassword());
+		  clientInputValidation.checkUsernameNotNullSignUp(clientLogin.getUsername(),clientLogin.getReTypeUsername());
+		   
 			  return clientLogin;
 				}
 	  

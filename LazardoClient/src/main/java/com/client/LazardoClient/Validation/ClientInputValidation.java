@@ -29,18 +29,34 @@ public class ClientInputValidation {
 		return false;
 	}
 	
-	public String checkUsernameNotNullSignUp(String username) {
+	public String checkUsernameNotNullSignUp(String username, String retypeusername) {
 		
-		return Optional.ofNullable(username)
-		.filter(user -> !user.trim().isEmpty())
-		.map(user -> {
-			return username;
-		}).orElseThrow(() -> new  NotNullException("Username is empty"));
+		Boolean userCheck = (username == null || username.trim().isEmpty() || retypeusername == null || retypeusername.trim().isEmpty()) ? true : false;
 		
-		
+		Optional.of(userCheck)
+		.filter(Boolean::booleanValue)
+		.map(check -> {
+			throw  new  NotNullException("Username is empty");
+		});
+		return checkUsernameMatch(username, retypeusername);
+	
 	}
 	
-	public String checkPasswordNotNull(String password, String retypepassword) {
+	public String checkUsernameMatch(String username, String retypeusername) {
+		
+		Boolean checkMatch = (!username.equals(retypeusername) || !retypeusername.equals(username)) ? true : false;
+		
+		Optional.of(checkMatch)
+		.filter(Boolean::booleanValue)
+		.map(check -> {
+			throw  new  NotNullException("Username do not match");
+		});
+		
+		return username;
+	}
+	
+	
+	public String checkPasswordNotNullSignUp(String password, String retypepassword) {
 		
 		Boolean passCheck = (password == null || password.trim().isEmpty()  || retypepassword == null || retypepassword.trim().isEmpty()) ? true : false ;
 		
@@ -49,14 +65,17 @@ public class ClientInputValidation {
 		.map(pass -> {
 			throw new NotNullException("Password is empty ");	
 		});
-		
-		return password;
+		return checkPasswordFormatSignUp(password,retypepassword);
 	}
 	
-	public String checkPasswordFormatSignUp(String password) {
+	public String checkPasswordFormatSignUp(String password, String retypepassword) {
 		
-		Optional.ofNullable(password)
-		.filter(pass -> !pass.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{7,15}$"))
+		Boolean passFormCheck = (!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{7,15}$") ||
+														  !retypepassword.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{7,15}$")) 
+				                                          ? true : false;
+		
+		Optional.of(passFormCheck)
+		.filter(Boolean::booleanValue)
 		.map(pass -> {
 			throw new InvalidException("Password must contain at "
 					+ "least one digit [0-9],one lowercase Latin character [a-z],"
@@ -64,10 +83,22 @@ public class ClientInputValidation {
 					+ "least least one special character like ! @ # & ( ),"
 					+ "length of at least 7 characters and a maximum of 15 characters");
 		});	
-		return password;
+		return checkPasswordMatch(password, retypepassword);
 	}
 	
-
+	public String checkPasswordMatch(String password, String retypepassword) {
+		
+		Boolean checkMatch = (!password.equals(retypepassword) || !retypepassword.equals(password)) ? true : false;
+		
+		Optional.of(checkMatch)
+		.filter(Boolean::booleanValue)
+		.map(check -> {
+			throw new InvalidException("Password do not match");
+		});
+		
+		return password;
+		
+	}
 
 	public Double checkDouble(Double balance) {
     boolean check =	Double.compare(balance, 0.0) < 0;
