@@ -4,9 +4,7 @@ import com.client.LazardoClient.Model.AddBalance;
 import com.client.LazardoClient.Model.ChangeClientRole;
 import com.client.LazardoClient.Model.ClientLogin;
 import com.client.LazardoClient.Model.TransferBalance;
-import com.client.LazardoClient.Service.BuyerClientService;
 import com.client.LazardoClient.Service.MainClientService;
-import com.client.LazardoClient.Service.SellerClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController implements InterfaceController {
 	
-	@Autowired
-	private BuyerClientService buyerClientService;
-	
-	@Autowired
-	private SellerClientService sellerClientService;
+
 	
 	@Autowired
 	private MainClientService mainClientService;

@@ -20,7 +20,6 @@ public class SellerClientController  implements InterfaceController{
 	@Autowired
 	private SellerClientService sellerClientService;
 	
-	
 	@PostMapping("/sell")
 	public String sellProduct(@RequestBody List<SellerProduct> products) {
 		return sellerClientService.sellProduct(products);

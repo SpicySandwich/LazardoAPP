@@ -57,7 +57,7 @@
     <fullyQualifiedTypeName name="com.client.LazardoClient.Service.MainClientService"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientLogin"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="java.lang.Boolean"/>
-    <fullyQualifiedTypeName name="com.client.LazardoClient.Model.ClientLogin"/>
 </qualifiedTypeNameHistroy>

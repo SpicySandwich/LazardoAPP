@@ -2,6 +2,7 @@ package com.client.LazardoClient.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import com.client.LazardoClient.DAO.BuyerBuyProductRepo;
 import com.client.LazardoClient.DAO.BuyerPayProductRepo;
@@ -54,12 +55,17 @@ public class BuyerClientService {
 	//Buyer Pay the product
 	public String BuyerPayProduct(BuyerPayment payment) {
 		compileValidation.checkBuyerPayingProduct(payment);
-		if (payProductRepo.singleProductPaymentBuyer(payment) == true) {
+		
+		return Optional.of(payProductRepo.singleProductPaymentBuyer(payment))
+		.filter(Boolean::booleanValue)
+		.map(pay -> {
 			payProductRepo.singleProductPaymentToSeller(payment);
 			payProductRepo.insertToHistory(payment);
 			return "Successfully paid the product";
-		}
-		throw new InvalidException("Unable to pay the product");
+		}).orElseThrow(() ->{
+			throw new InvalidException("Unable to pay the product");
+		});
+		
 	}
 	//Buyer Update Details
 	public String updateBuyerDetails(BuyerClientDetails buyerClientDetails) {

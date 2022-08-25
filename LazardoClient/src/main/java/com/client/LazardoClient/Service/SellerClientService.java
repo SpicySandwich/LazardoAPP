@@ -1,6 +1,7 @@
 package com.client.LazardoClient.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.client.LazardoClient.DAO.ClientDetailsChanges;
 import com.client.LazardoClient.DAO.SellerDeleteUpdateProductRepo;
@@ -63,10 +64,13 @@ public class SellerClientService {
 	//Seller update product
 	public String updateSellerProduct(SellerProduct sellerProduct) {
 		compileValidation.checkUpdateSellerProduct(sellerProduct);
-		if(sellerDeleteUpdateProductRepo.updateSellerProduct(sellerProduct)== true)
+		
+		return Optional.of(sellerDeleteUpdateProductRepo.updateSellerProduct(sellerProduct))
+		.filter(Boolean::booleanValue)
+		.map(update -> {
 			return "Succefully updated ";
-		throw new InvalidException("Unable to update the product");
-	
+		}).orElseThrow(() -> new InvalidException("Unable to update the product"));
+
 	}
   
 
