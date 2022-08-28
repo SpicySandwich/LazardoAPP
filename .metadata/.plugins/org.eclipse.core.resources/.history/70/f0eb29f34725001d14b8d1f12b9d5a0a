@@ -1,0 +1,7 @@
+package com.client.LazardoClient.Filter;
+
+import javax.servlet.Filter;
+
+public class LoggingFilter implements Filter{
+
+}

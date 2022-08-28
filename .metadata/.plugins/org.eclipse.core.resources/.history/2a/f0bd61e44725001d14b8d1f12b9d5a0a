@@ -1,0 +1,5 @@
+package com.client.LazardoClient.Filter;
+
+public class LoggingFilter {
+
+}

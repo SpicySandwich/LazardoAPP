@@ -1,0 +1,14 @@
+package com.client.LazardoClient.DTO;
+
+import com.client.LazardoClient.Model.AddBalance;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AddBalanceDTO {
+
+}

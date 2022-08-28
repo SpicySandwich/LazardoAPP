@@ -1,0 +1,36 @@
+package com.client.LazardoClient.DTO;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class ClientLoginDTO {
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private Integer loginId;
+	
+	private String username;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private String reTypeUsername;
+	
+	
+	private String password;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private String reTypePassword;
+	
+	private BuyerClientDetailsDTO buyerDetails;
+	
+	private SellerClientDetailsDTO sellerDetails;
+
+
+}
+
+

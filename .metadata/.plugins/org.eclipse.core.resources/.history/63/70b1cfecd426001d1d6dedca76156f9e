@@ -1,0 +1,23 @@
+package com.client.LazardoClient.DTO;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+@ToString
+public class BuyerClientPurchaseDTO {
+	
+	private Integer clientPurchaseId;
+	private Integer purchaseclientid;
+	private Integer purchaseproductid;
+	private SellerProductDTO productList;
+
+}

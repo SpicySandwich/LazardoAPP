@@ -1,0 +1,19 @@
+package com.client.LazardoClient.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+public class ChangeClientRoleDTO {
+	
+	private Integer roleChange;
+	private String clientEmail;
+
+}
