@@ -1,0 +1,23 @@
+package com.client.LazardoClient.BuilderModelToDTO;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+public class ParentDTO {
+	
+	private String nameDTO;
+	private Integer ageDTO;
+	private AddressDTO addressDTO;
+	private List<ChildDTO> childsDTO;
+
+}

@@ -3,6 +3,7 @@ package com.client.LazardoClient.DTO;
 import java.time.LocalDateTime;
 
 import com.client.LazardoClient.Deserializer.LocalDateTimeDeserializer;
+import com.client.LazardoClient.Model.SellerProduct;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.OptBoolean;
@@ -41,5 +42,17 @@ public class SellerProductDTO {
    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime expirationdateDTO;
 	private String commentDTO;
+	
+	public static SellerProductDTO convertDto(SellerProduct sellerProduct) {
+		return SellerProductDTO.builder()
+				.clientSellerEmailDTO(sellerProduct.getClientSellerEmail())
+				.idDTO(sellerProduct.getId())
+				.brandDTO(sellerProduct.getBrand())
+				.nameDTO(sellerProduct.getName())
+				.currentdateDTO(sellerProduct.getCurrentdate())
+				.expirationdateDTO(sellerProduct.getExpirationdate())
+				.commentDTO(sellerProduct.getComment())
+				.build();
+	}
 
 }

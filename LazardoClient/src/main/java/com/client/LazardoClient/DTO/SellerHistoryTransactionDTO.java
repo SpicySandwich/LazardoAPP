@@ -3,12 +3,10 @@ package com.client.LazardoClient.DTO;
 import java.time.LocalDateTime;
 
 import com.client.LazardoClient.Deserializer.LocalDateTimeDeserializer;
+import com.client.LazardoClient.Model.SellerHistoryTransaction;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.OptBoolean;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
@@ -34,5 +32,15 @@ public class SellerHistoryTransactionDTO {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING, lenient = OptBoolean.FALSE)
    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime datePaidDTO;
+	
+	public static SellerHistoryTransactionDTO convertdDto(SellerHistoryTransaction sellerHistoryTransaction) {
+		return SellerHistoryTransactionDTO.builder()
+				.buyerEmaillDTO(sellerHistoryTransaction.getBuyerEmaill())
+				.productNameDTO(sellerHistoryTransaction.getProductName())
+				.productPriceDTO(sellerHistoryTransaction.getProductPrice())
+				.balanceTransferDTO(sellerHistoryTransaction.getBalanceTransfer())
+				.sellerEmailDTO(sellerHistoryTransaction.getSellerEmail())
+				.build();
+	}
 
 }

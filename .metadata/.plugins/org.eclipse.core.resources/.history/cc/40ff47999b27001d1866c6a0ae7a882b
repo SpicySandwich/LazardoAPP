@@ -1,0 +1,19 @@
+package com.client.LazardoClient.BuilderModelToDTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+public class ChildDTO {
+	
+	private String nameDTO;
+	private Integer ageDTO;
+
+}

@@ -1,9 +1,7 @@
 package com.client.LazardoClient.DTO;
 
-
-
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.client.LazardoClient.Model.BuyerClientDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,6 +32,7 @@ public class BuyerClientDetailsDTO {
 	private String emailDTO;
 	private Double balanceDTO;
 	
+	@Builder.Default
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Integer roleDTO = 1;
 	
@@ -43,9 +42,9 @@ public class BuyerClientDetailsDTO {
 	private List<BuyerClientPurchaseDTO>  clientPurchasesDTO;
 	private PriceDTO productTotalPriceDTO;
 	
-	//error in process
+
 	public static BuyerClientDetailsDTO convertDto(BuyerClientDetails buyerClientDetails) {
-		BuyerClientDetailsDTO
+	return BuyerClientDetailsDTO
 				.builder()
 				.detailIdDTO(buyerClientDetails.getDetailId())
 				.loginUsernameDTO(buyerClientDetails.getLoginUsername())
@@ -54,16 +53,14 @@ public class BuyerClientDetailsDTO {
 				.emailDTO(buyerClientDetails.getEmail())
 				.balanceDTO(buyerClientDetails.getBalance())
 				.roleDTO(buyerClientDetails.getRole())
-				.cartProductDTO(List.of())
-				.clientPurchasesDTO(List.of())
-				.productTotalPriceDTO(buyerClientDetails.getProductTotalPrice().getTotalPrice())
-				.builder();
-				
-				
-				
-				
-				return new BuyerClientDetailsDTO();
-				
+				.cartProductDTO(buyerClientDetails.getCartProduct().stream()
+						.map(BuyerCartProductDTO::convertDto)
+						.collect(Collectors.toList()))
+				.clientPurchasesDTO(buyerClientDetails.getClientPurchases().stream()
+						.map(BuyerClientPurchaseDTO::convertDto)
+						.collect(Collectors.toList()))
+				.productTotalPriceDTO(PriceDTO.convertDto(buyerClientDetails.getProductTotalPrice()))
+				.build();	
 	}
 
 }
