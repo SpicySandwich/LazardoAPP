@@ -20,7 +20,7 @@ public class BuyerClientController implements InterfaceController{
 	@Autowired
 	private BuyerClientService buyerClientService;
 	
-	
+
 	@PostMapping("/cartproduct")
 	public String cartProduct(@RequestBody List<BuyerCartProduct>  cartProduct) {
 		return buyerClientService.BuyerPurchaseProduct(cartProduct);

@@ -119,12 +119,11 @@ public class ClientInputValidation {
 		 
 		 boolean check =	 validationRepo.ifEmailExist(email);
 		 
-		 Optional.of(check)
+		return Optional.of(check)
 		 .filter(Boolean::booleanValue)
-		 .map(check2 -> {
-			 return email;
-		 });
-		 throw new InvalidException("Email don't exist");
+		 .map(check2 -> email).<InvalidException>orElseThrow(() -> new InvalidException("Email don't exist"));
+
+
 	 }
 	 
 	 public String checkEmailFalse(String email) {

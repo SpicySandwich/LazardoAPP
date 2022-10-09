@@ -62,7 +62,7 @@ public class BuyerClientService {
 			payProductRepo.singleProductPaymentToSeller(payment);
 			payProductRepo.insertToHistory(payment);
 			return "Successfully paid the product";
-		}).orElseThrow(() ->{
+		}).<InvalidException>orElseThrow(() ->{
 			throw new InvalidException("Unable to pay the product");
 		});
 		
